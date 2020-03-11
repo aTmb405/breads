@@ -1,0 +1,14 @@
+<h1>ARTICLY</h1>
+<p class="lead">Enter the url to record your reading. </p>
+<form method="POST" action='/api/users/:username/articles'>
+    <input type="text" class="form" name="url" placeholder="Enter the URL">
+    <button>Record</button>
+</form>
+<p>Y'all have read <%= sum %> words this year!</p>
+
+<p>Here are the articles you've read:</p>
+<ul>
+  <% reading_list.forEach(function(reading) { %>
+  <li><%= reading %></li>
+  <% }); %>
+</ul>
