@@ -9,9 +9,8 @@ const store = configureStore();
 const App = () => (
   <Provider store={store}>
       <div className="onboarding">
-        <p>HELLO WORLD</p>
-        {/* <Navbar />
-        <Main /> */}
+        <Navbar />
+        {/* <Main /> */}
       </div>
   </Provider>
 );

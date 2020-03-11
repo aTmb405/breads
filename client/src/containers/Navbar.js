@@ -6,12 +6,28 @@ class Navbar extends Component {
     render() {
         return (
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-                <Link className='navbar-brand' to='/articles'>
-                    Dog App
-                </Link>
+                <div className='container-fluid'>
+                    <Link className='navbar-brand' to='/articles'>
+                        Dog App
+                    </Link>
+                    <ul className='nav navbar-nav navbar-right'>
+                        <li>
+                            <Link to='/signup'>Sign up</Link>
+                        </li>
+                        <li>
+                            <Link to='/signin'>Log in</Link>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         )
     }
 }
 
-export default Navbar;
+function mapStateToProps(state) {
+    return {
+        currentUser: state.currentUser
+    };
+}
+
+export default connect(mapStateToProps, null)(Navbar);
