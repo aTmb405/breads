@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Routes from '../Routes';
 import Navbar from './Navbar';
+import Main from './Main';
 import { Provider } from 'react-redux';
 import { configureStore } from '../store';
 
@@ -10,7 +10,7 @@ const App = () => (
   <Provider store={store}>
       <div className="onboarding">
         <Navbar />
-        {/* <Main /> */}
+        <Main />
       </div>
   </Provider>
 );
@@ -36,9 +36,6 @@ const App = () => (
 //     return (
 //       <div>
 //         <Navbar/>
-//         <div className='container'>
-//           <Routes articles={this.props.articles} />
-//         </div>
 //       </div>
       
 //     );
