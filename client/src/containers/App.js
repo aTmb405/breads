@@ -7,12 +7,12 @@ import { configureStore } from '../store';
 const store = configureStore(); //store controls all state in app
 
 const App = () => (
-  <Provider store={store}>
-      <div className="onboarding">
-        <Navbar />
-        <Main />
-      </div>
-  </Provider>
+    <Provider store={store}>
+        <div className="onboarding">
+            <Navbar />
+            <Main />
+        </div>
+    </Provider>
 );
 
 // class App extends Component {

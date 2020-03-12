@@ -11,7 +11,13 @@ exports.signup = function(req, res, next) {
         res.status(200).json({ username: newUser.username, token });
     }
     catch (err) {
-        res.status(400).json(err);
+        if (err.code === 11000) {
+            err.message = "Sorry, that username and/or email is taken";
+        }
+        return next({
+            status: 400,
+            message: err.message
+        });
     }
 }
 
