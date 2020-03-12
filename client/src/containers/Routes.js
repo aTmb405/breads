@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ArticleList from './ArticleList';
-import Homepage from './components/Homepage';
+import ArticleList from '../ArticleList';
+import Homepage from '../components/Homepage';
+import AuthForm from '../components/AuthForm';
 
 class Routes extends Component {
   render() {
@@ -12,6 +13,24 @@ class Routes extends Component {
           exact
           path="/"
           render={props => <Homepage/>} //currentUser={currentUser} {...props}
+        />
+        <Route
+          exact
+          path='/signin'
+          render={props => {
+            return (
+              <AuthForm buttonText='Log In' heading='Welcome Back.' {...props}/>
+            )
+          }}
+        />
+        <Route
+          exact
+          path='/signup'
+          render={props => {
+            return (
+              <AuthForm buttonText='Sign up' heading='Join today!' {...props}/>
+            )
+          }}
         />
         <Route
           exact

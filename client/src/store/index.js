@@ -3,14 +3,13 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk"; //for redux to work with async code
 
 export function configureStore() {
-  const store = createStore(
-    rootReducer,
-    compose(
-      applyMiddleware(thunk),
-      //window.devToolsExtension ? window.devToolsExtension() : f => f
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  );
-
-  return store;
+    const store = createStore(
+        rootReducer, //reducers receive state and an action, and then return the new state
+        compose(
+            applyMiddleware(thunk),
+            //window.devToolsExtension ? window.devToolsExtension() : f => f
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        )
+    );
+    return store;
 }

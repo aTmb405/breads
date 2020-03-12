@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar';
 import Main from './Main';
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'; //makes react and redux connect together
 import { configureStore } from '../store';
 
-const store = configureStore();
+const store = configureStore(); //store controls all state in app
 
 const App = () => (
   <Provider store={store}>
