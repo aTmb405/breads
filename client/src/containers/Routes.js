@@ -5,9 +5,10 @@ import ArticleList from '../ArticleList';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
+import { removeError } from '../store/actions/errors';
 
 const Routes = props => {
-    const { authUser } = props;
+    const { authUser, errors, removeError } = props;
     return (
         <Switch>
             <Route
@@ -21,6 +22,8 @@ const Routes = props => {
                 render={props => {
                     return (
                         <AuthForm
+                            removeError={removeError}
+                            errors={errors}
                             onAuth={authUser}
                             buttonText='Log In'
                             heading='Welcome Back.'
@@ -34,13 +37,15 @@ const Routes = props => {
                 path='/signup'
                 render={props => {
                     return (
-                    <AuthForm
-                        onAuth={authUser}
-                        signup
-                        buttonText='Sign up'
-                        heading='Join today!'
-                        {...props}
-                    />
+                        <AuthForm
+                            removeError={removeError}
+                            errors={errors}
+                            onAuth={authUser}
+                            signup
+                            buttonText='Sign up'
+                            heading='Join today!'
+                            {...props}
+                        />
                     )
                 }}
             />
@@ -62,5 +67,5 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser })(Routes)
+  connect(mapStateToProps, { authUser, removeError })(Routes)
 );

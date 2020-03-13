@@ -1,7 +1,7 @@
 let { PythonShell } = require('python-shell'),
     Reading = require("../models/reading").Reading,
-    select = require("../util/readings"),
-    select2 = require("../util/articles");
+    select = require("../helpers/readings"),
+    select2 = require("../helpers/articles");
 
 // fix next
 exports.scrapeArticle = function(req, res, next) {
