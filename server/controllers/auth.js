@@ -21,21 +21,30 @@ exports.signup = async function(req, res, next) {
     }
 }
 
-exports.signin = function(req, res, next) {
+exports.signin = async function(req, res, next) {
     let username = req.body.username,
         password = req.body.password;
-
-    select.findByUsername(username).then(function(results) {
-        comparePassword(password, results[0].password, function(err, isMatch){
+    try {
+        let user = await select.findByUsername(username)
+        comparePassword(password, user[0].password, function(err, isMatch) {
             if (isMatch) {
-                let token = jwt.sign({ username: username }, process.env.SECRET_KEY);
-                res.status(200).json({
-                    userId: results[0].id,
-                    username: username,
+                let token = jwt.sign({ username }, process.env.SECRET_KEY);
+                return res.status(200).json({
+                    userId: user[0].id,
+                    username,
                     token});
-            } else res.status(400).json({message: 'Invalid Username/Password.'});
+            } else {
+                return next({
+                    status: 400,
+                    message: "Invalid Email/Password."
+                });
+            }
         });
-    }).catch(function(err){
-        res.status(400).json({message: 'Invalid Email/Password'})
-    })
+    }
+    catch (err) {
+        return next({
+            status: 400,
+            message: "Invalid Email/Password."
+        });
+    }
 }

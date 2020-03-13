@@ -18,12 +18,13 @@ export function authUser(type, userData) {
                     localStorage.setItem('jwtToken', token);
                     dispatch(setCurrentUser(user));
                     dispatch(removeError());
-                    resolve();
+                    resolve(); // indicate that the API call succeeded
                 })
-                .catch(err => {
+                .catch((err) => {
+                    console.error(err);
                     dispatch(addError(err.message)); //cannot read property message of undefined
-                    reject();
-                })
-        })
+                    reject(); // indicate the API call failed
+                });
+        });
     }
 }

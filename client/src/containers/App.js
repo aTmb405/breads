@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Navbar from './Navbar';
 import Main from './Main';
 import { Provider } from 'react-redux'; //makes react and redux connect together

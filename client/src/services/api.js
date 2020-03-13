@@ -15,6 +15,7 @@ export default function apiCall(method, path, data) {
                 return resolve(res.data);
             })
             .catch(err => {
+                console.error(err);
                 return reject(err.response.data.error);
             })
     });
