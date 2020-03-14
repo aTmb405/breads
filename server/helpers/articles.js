@@ -13,8 +13,7 @@ exports.findByUrl = (url) => {
 
 exports.findAll = () => {
     let articles = new Promise(function (resolve, reject) {
-        db.connection.query("SELECT url FROM articles", function (err, results) {
-            console.log("results - " + results);
+        db.connection.query("SELECT * FROM articles ORDER BY id DESC", function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });

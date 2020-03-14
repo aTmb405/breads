@@ -1,20 +1,20 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ArticleList from '../ArticleList';
+import ReadingsList from './ReadingsList';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 
 const Routes = props => {
-    const { authUser, errors, removeError } = props;
+    const { authUser, errors, removeError, currentUser } = props;
     return (
         <Switch>
             <Route
                 exact
                 path="/"
-                render={props => <Homepage/>} //currentUser={currentUser} {...props}
+                render={props => <Homepage currentUser={currentUser} {...props}/>}
             />
             <Route
                 exact
@@ -49,12 +49,12 @@ const Routes = props => {
                     )
                 }}
             />
-            <Route
+            {/* <Route
                 exact
                 path='/articles'
-                render={() => <ArticleList articles={this.props.articles} />}
-            />
-            <Redirect to='/articles' />
+                render={() => <ReadingsList articles={this.props.articles} />}
+            /> */}
+            {/* <Redirect to='/articles' /> */}
         </Switch>
     );
 }

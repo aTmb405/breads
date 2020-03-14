@@ -16,22 +16,39 @@ exports.scrapeArticle = function(req, res, next) {
     });
 }
 
-exports.createReading = function(req, res, next) {
-    let newReading = new Reading(req.params.username, req.body.url);
-
-    select.create(newReading).then(function(reading) {
-        return res.status(200).json(reading);
-    }).catch(function(err) {
-        console.log("postReading error");
-        res.status(400).json(err);
-    });
+exports.createReading = async function(req, res, next) {
+    try {
+        let newReading = new Reading(req.params.username, req.body.url);
+        let createdReading = await select.create(newReading);
+        return res.status(200).json(createdReading);
+    }
+    catch (err) {
+        console.log("switched to try catch block");
+        return next(err);
+    }
+    // let newReading = new Reading(req.params.username, req.body.url);
+    // select.create(newReading).then(function(reading) {
+    //     return res.status(200).json(reading);
+    // }).catch(function(err) {
+    //     console.log("postReading error");
+    //     res.status(400).json(err);
+    // });
 }
 
-exports.listAllArticles = function(req, res, next) {
-    select2.findAll().then(function(articles) {
-        console.log(articles);
+exports.listAllArticles = async function(req, res, next) {
+    try {
+        let articles = await select2.findAll();
         return res.status(200).json(articles);
-    }).catch(function(err) {
-        res.status(400).json(err);
-    });
+    }
+    catch (err) {
+        console.log("switched to try catch block");
+        return next(err);
+    }
+    // select2.findAll().then(function(articles) {
+    //     console.log(articles);
+    //     return res.status(200).json(articles);
+    // }).catch(function(err) {
+    //     // return next(err);
+    //     res.status(400).json(err);
+    // });
 }

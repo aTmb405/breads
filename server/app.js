@@ -21,7 +21,7 @@ let express = require('express'),
     articleRoutes = require("./routes/articles"),
     cors = require('cors'),
     auth = require('./middleware/auth'),
-    db = require("./models");
+    helpers = require("./controllers/articles");
 
 const PORT = 8080;
 
@@ -39,39 +39,41 @@ app.use("/api/users/:username/articles",
         auth.loginRequired, auth.ensureCorrectUser,
         articleRoutes);
 
+app.get("/api/articles", helpers.listAllArticles); //refactor
+
 // *****************************
 // **********NOT REACT**********
 // *****************************
 //HOME
-app.get("/", function(req, res) {
-    res.render("home");
-});
+// app.get("/", function(req, res) {
+//     res.render("home");
+// });
 
 //SIGNIN
-app.get("/signin", function(req, res) {
-    res.render("login");
-});
+// app.get("/signin", function(req, res) {
+//     res.render("login");
+// });
 
 // READINGS - need to display with React and JSON
-app.get("/articles", function(req, res, next) {
-    let q = "SELECT url, word_count AS words FROM articles";
-    db.connection.query(q, function (err, results) {
-        if (err) return next(err);
-        let sum = 0;
-        let reading_list = [];
-        for (let words in results) {
-            if (results.hasOwnProperty(words)) {
-            sum += results[words].words;
-            }
-        }
-        for (let url in results) {
-            if (results.hasOwnProperty(url)) {
-            reading_list.push(results[url].url);
-            }
-        }
-        res.render('articles', {sum: sum, reading_list: reading_list});
-    });
-});
+// app.get("/articles", function(req, res, next) {
+//     let q = "SELECT url, word_count AS words FROM articles";
+//     db.connection.query(q, function (err, results) {
+//         if (err) return next(err);
+//         let sum = 0;
+//         let reading_list = [];
+//         for (let words in results) {
+//             if (results.hasOwnProperty(words)) {
+//             sum += results[words].words;
+//             }
+//         }
+//         for (let url in results) {
+//             if (results.hasOwnProperty(url)) {
+//             reading_list.push(results[url].url);
+//             }
+//         }
+//         res.render('articles', {sum: sum, reading_list: reading_list});
+//     });
+// });
 
 app.use(function(req, res, next) {
     let err = new Error("Not Found");
