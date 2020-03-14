@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from '../store/actions/auth';
+import ArticleForm from '../components/ArticleForm';
 
 class Navbar extends Component {
     logout = e => {
@@ -18,20 +19,22 @@ class Navbar extends Component {
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
+                            <ArticleForm/>
                             <li>
-                                <Link to={`/users/${this.props.currentUser.user.username}/articles/new`}>New Reading</Link>
-                            </li>
-                            <li>
-                                <a onClick={this.logout}>Log out</a>
+                                <button onClick={this.logout} className="btn btn-outline-primary btn-sm mb-2">Log out</button>
                             </li>
                         </ul>
                     ) : (
                         <ul className='nav navbar-nav navbar-right'>
                             <li>
-                                <Link to='/signup'>Sign up</Link>
+                                <Link to='/signup'>
+                                    <button className="btn btn-outline-primary btn-sm mb-2">Sign up</button>
+                                </Link>
                             </li>
                             <li>
-                                <Link to='/signin'>Log in</Link>
+                                <Link to='/signin'>
+                                    <button className="btn btn-outline-primary btn-sm mb-2">Log in</button>
+                                </Link>
                             </li>
                         </ul>
                     )}

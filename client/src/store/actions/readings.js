@@ -18,3 +18,7 @@ export const fetchReadings = () => {
             });
     }
 }
+
+const postReadings = () => {
+
+}
