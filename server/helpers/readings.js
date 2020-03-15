@@ -3,18 +3,18 @@ let db = require("../models"),
 
 // READ, UPDATE, DELETE
 
-exports.create = (username, url) => {
+exports.create = (reading) => {
     let user = '',
         article = '';
-    
+
     let articleId = new Promise(function (resolve, reject) {
-        db.connection.query("SELECT * FROM articles WHERE url = ?", url, function (err, results) {
+        db.connection.query("SELECT * FROM articles WHERE url = ?", reading.url, function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });
     });
     
-    select.findByUsername(username).then(function(results) {
+    select.findByUsername(reading.username).then(function(results) {
         user = results[0].id;
         return articleId;
     }).then(function(results) {

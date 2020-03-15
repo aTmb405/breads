@@ -1,5 +1,5 @@
 let db = require("../models");
-// CREATE, UPDATE, DELETE
+// CREATE, UPDATE, DELETE - create is in python scraper
 
 exports.findByUrl = (url) => {
     let article = new Promise(function (resolve, reject) {

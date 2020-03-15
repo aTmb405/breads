@@ -19,6 +19,11 @@ export const fetchReadings = () => {
     }
 }
 
-const postReadings = () => {
-
+export const postNewReading = url => (dispatch, getState) => {
+    let { currentUser } = getState();
+    console.log(currentUser);
+    const username = currentUser.user.username;
+    return apiCall("post", `/users/${username}/articles`, { url })
+        .then(res => {})
+        .catch(err => dispatch(addError(err.message)));
 }

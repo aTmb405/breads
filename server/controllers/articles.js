@@ -11,7 +11,7 @@ exports.scrapeArticle = function(req, res, next) {
             console.log("scraper error");
             return next(err);
         }
-        res.redirect("/articles");
+        // res.redirect("/articles");
         next();
     });
 }

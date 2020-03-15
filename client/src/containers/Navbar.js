@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from '../store/actions/auth';
 import ArticleForm from '../components/ArticleForm';
+import { withRouter } from 'react-router-dom';
 
 class Navbar extends Component {
     logout = e => {
@@ -19,7 +20,7 @@ class Navbar extends Component {
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
-                            <ArticleForm/>
+                            <ArticleForm history={this.props.history}/>
                             <li>
                                 <button onClick={this.logout} className="btn btn-outline-primary btn-sm mb-2">Log out</button>
                             </li>
@@ -50,4 +51,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default withRouter(connect(mapStateToProps, { logout })(Navbar));
