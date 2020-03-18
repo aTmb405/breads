@@ -7,6 +7,7 @@ exports.create = (reading) => {
     let user = '',
         article = '';
 
+    //refactor
     let articleId = new Promise(function (resolve, reject) {
         db.connection.query("SELECT * FROM articles WHERE url = ?", reading.url, function (err, results) {
             if (err) reject(err);
@@ -28,6 +29,33 @@ exports.create = (reading) => {
         return post;
     }).catch(function(err) {
         console.log("createReading error");
+        throw err;
+    });
+}
+
+exports.findByUserId = (userId) => {
+    let articles = [];
+    let readings = new Promise(function(resolve, reject) {
+        db.connection.query('SELECT * FROM readings WHERE user_id = ?', userId, function(err, results) {
+            if (err) reject(err);
+            return resolve(results);
+        });
+    });
+
+    return readings.then(function(results) {
+        results.forEach(res => {
+            articles.push(res.article_id);
+        });
+        
+        let getArticle = new Promise(function (resolve, reject) {
+            db.connection.query("SELECT * FROM articles WHERE id IN (?)", [articles], function (err, results) {
+                if (err) reject(err);
+                return resolve(results);
+            });
+        });
+        return getArticle;
+    }).catch(function(err) {
+        console.log("findById error");
         throw err;
     });
 }

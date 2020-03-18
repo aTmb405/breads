@@ -34,6 +34,20 @@ export const fetchReadings = () => {
     }
 }
 
+export const fetchUserReadings = () => {
+    return (dispatch, getState) => {
+        let {currentUser} = getState();
+        const id = currentUser.user.userId;
+        return apiCall('get', `/articles/${id}`)
+            .then(res => {
+                dispatch(loadReadings(res));
+            })
+            .catch(err => {
+                dispatch(addError(err.message));
+            })
+    }
+}
+
 export const postNewReading = url => (dispatch, getState) => {
     let { currentUser } = getState();
     const username = currentUser.user.username;

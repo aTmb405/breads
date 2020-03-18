@@ -52,3 +52,14 @@ exports.listAllArticles = async function(req, res, next) {
     //     res.status(400).json(err);
     // });
 }
+
+exports.listUserArticles = async function(req, res, next) {
+    try {
+        let userArticles = await select.findByUserId(req.params.id);
+        return res.status(200).json(userArticles);
+    }
+    catch (err) {
+        console.log('listUserArticles error');
+        return next(err);
+    }
+}

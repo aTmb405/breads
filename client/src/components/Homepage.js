@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ReadingsTimeline from "./ReadingsTimeline";
 
 const Homepage = ({ currentUser }) => {
-    console.log(currentUser);
     if (!currentUser.isAuthenticated) {
         return (
             <div className="home-hero">

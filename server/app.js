@@ -24,7 +24,7 @@ const PORT = 8080;
 
 app.set('views', './views');
 app.set("view engine", "ejs");
-app.use(cors());
+app.use(cors()); //{origin: true, credentials: true}
 // app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
@@ -37,6 +37,7 @@ app.use("/api/users/:username/articles",
         articleRoutes);
 
 app.get("/api/articles", helpers.listAllArticles); //refactor
+app.get('/api/articles/:id', helpers.listUserArticles); //refactor
 
 app.use(function(req, res, next) {
     let err = new Error("Not Found");

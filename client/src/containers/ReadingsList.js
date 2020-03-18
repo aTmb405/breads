@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchReadings } from '../store/actions/readings';
+import { fetchReadings, fetchUserReadings } from '../store/actions/readings';
 import ReadingItem from '../components/ReadingItem';
+
+// user article list
+    // user id
+    // readings
 
 class ReadingsList extends Component {
     componentDidMount() {
-        this.props.fetchReadings();
+        // this.props.fetchReadings();
+        this.props.fetchUserReadings();
     }
 // clear reading state whenever logged out or failed login
     render() {
@@ -19,11 +24,15 @@ class ReadingsList extends Component {
         ));
         return (
             <div className='row col-sm-8'>
-                <div className='offset-1 col-sm-10'>
-                    <div className='list-group' id='readings'>
-                        {readingsList}
+                {this.props.readings.length ? (
+                    <div className='offset-1 col-sm-10'>
+                        <div className='list-group' id='readings'>
+                            {readingsList}
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <h2>You haven't read anything!</h2>
+                )}
             </div>
         )
     }
@@ -35,4 +44,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchReadings })(ReadingsList);
+export default connect(mapStateToProps, { fetchReadings, fetchUserReadings })(ReadingsList);

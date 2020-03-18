@@ -20,7 +20,7 @@ class AuthForm extends Component {
         });
     };
 
-    // need to know why user id is skipping
+    // need to know why user id is skipping - did I delete any??
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.signup ? 'signup' : 'signin';
@@ -118,8 +118,7 @@ class AuthForm extends Component {
                             <button type='submit' className='btn btn-primary btn-block btn-lg'>
                                 {buttonText}
                             </button>
-                        </form>
-                        
+                        </form>  
                     </div>
                 </div>
             </div>
