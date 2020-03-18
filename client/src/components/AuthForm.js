@@ -19,6 +19,7 @@ class AuthForm extends Component {
         });
     };
 
+    // need to know why user id is skipping
     handleSubmit = e => {
         e.preventDefault();
         const authType = this.props.signup ? 'signup' : 'signin';

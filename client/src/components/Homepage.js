@@ -16,7 +16,7 @@ const Homepage = ({ currentUser }) => {
     }
     return (
         <div>
-            <ReadingsTimeline/>
+            <ReadingsTimeline />  
         </div>
     )
 }

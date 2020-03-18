@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
-import ArticleForm from '../components/ArticleForm';
 import { withRouter } from 'react-router-dom';
+import ArticleForm from '../components/ArticleForm';
 
 class Navbar extends Component {
     logout = e => {
@@ -21,20 +21,23 @@ class Navbar extends Component {
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
                             <ArticleForm history={this.props.history}/>
+                            {/* <li>
+                                <button onClick={this.visibility} className='btn btn-outline-primary btn-sm mb-2'>Post Article</button>
+                            </li> */}
                             <li>
-                                <button onClick={this.logout} className="btn btn-outline-primary btn-sm mb-2">Log out</button>
+                                <button onClick={this.logout} className='btn btn-outline-primary btn-sm mb-2'>Log out</button>
                             </li>
                         </ul>
                     ) : (
                         <ul className='nav navbar-nav navbar-right'>
                             <li>
                                 <Link to='/signup'>
-                                    <button className="btn btn-outline-primary btn-sm mb-2">Sign up</button>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Sign up</button>
                                 </Link>
                             </li>
                             <li>
                                 <Link to='/signin'>
-                                    <button className="btn btn-outline-primary btn-sm mb-2">Log in</button>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Log in</button>
                                 </Link>
                             </li>
                         </ul>
