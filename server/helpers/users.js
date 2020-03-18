@@ -1,8 +1,8 @@
 let db = require("../models"),
-    bcrypt = require('bcrypt'),
-    util = require('util');
+    bcrypt = require('bcrypt');
+    // util = require('util');
 
-let query = util.promisify(db.connection.query).bind(db.connection.query);
+// let query = util.promisify(db.connection.query).bind(db.connection.query);
 
 // UPDATE, DELETE
 

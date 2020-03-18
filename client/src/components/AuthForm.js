@@ -9,7 +9,8 @@ class AuthForm extends Component {
             last_name: '',
             email: '',
             username: '',
-            password: ''
+            password: '',
+            image: ''
         }
     }
 
@@ -34,7 +35,7 @@ class AuthForm extends Component {
     }
 
     render() {
-        const { first_name, last_name, email, username, password } = this.state;
+        const { first_name, last_name, email, username, password, image } = this.state;
         const { heading, buttonText, signup, errors, history, removeError } = this.props;
 
         history.listen(() => {
@@ -82,19 +83,28 @@ class AuthForm extends Component {
                                         type='text'
                                         value={email}
                                     />
-                                </div>
-                            )}
-                            
-                            <label htmlFor='username'>Username:</label>
+                                    <label htmlFor='image'>Image:</label>
                                     <input
                                         autoComplete='off'
                                         className='form-control'
-                                        id='username'
-                                        name='username'
+                                        id='image'
+                                        name='image'
                                         onChange={this.handleChange}
                                         type='text'
-                                        value={username}
+                                        value={image}
                                     />
+                                </div>
+                            )}
+                            <label htmlFor='username'>Username:</label>
+                            <input
+                                autoComplete='off'
+                                className='form-control'
+                                id='username'
+                                name='username'
+                                onChange={this.handleChange}
+                                type='text'
+                                value={username}
+                            />
                             <label htmlFor='password'>Password:</label>
                             <input
                                 autoComplete='off'
@@ -105,7 +115,6 @@ class AuthForm extends Component {
                                 type='password'
                                 value={password}
                             />
-                            
                             <button type='submit' className='btn btn-primary btn-block btn-lg'>
                                 {buttonText}
                             </button>

@@ -8,9 +8,6 @@
     // users
     // python
     // errorhandler?
-// CLIENT
-    // what would be views
-    // what would be public
 
 require("dotenv").config();
 let express = require('express'),
@@ -40,40 +37,6 @@ app.use("/api/users/:username/articles",
         articleRoutes);
 
 app.get("/api/articles", helpers.listAllArticles); //refactor
-
-// *****************************
-// **********NOT REACT**********
-// *****************************
-//HOME
-// app.get("/", function(req, res) {
-//     res.render("home");
-// });
-
-//SIGNIN
-// app.get("/signin", function(req, res) {
-//     res.render("login");
-// });
-
-// READINGS - need to display with React and JSON
-// app.get("/articles", function(req, res, next) {
-//     let q = "SELECT url, word_count AS words FROM articles";
-//     db.connection.query(q, function (err, results) {
-//         if (err) return next(err);
-//         let sum = 0;
-//         let reading_list = [];
-//         for (let words in results) {
-//             if (results.hasOwnProperty(words)) {
-//             sum += results[words].words;
-//             }
-//         }
-//         for (let url in results) {
-//             if (results.hasOwnProperty(url)) {
-//             reading_list.push(results[url].url);
-//             }
-//         }
-//         res.render('articles', {sum: sum, reading_list: reading_list});
-//     });
-// });
 
 app.use(function(req, res, next) {
     let err = new Error("Not Found");

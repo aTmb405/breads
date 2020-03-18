@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ReadingsTimeline from "./ReadingsTimeline";
 
 const Homepage = ({ currentUser }) => {
+    console.log(currentUser);
     if (!currentUser.isAuthenticated) {
         return (
             <div className="home-hero">
@@ -16,7 +17,10 @@ const Homepage = ({ currentUser }) => {
     }
     return (
         <div>
-            <ReadingsTimeline />  
+            <ReadingsTimeline
+                image={currentUser.user.image}
+                username={currentUser.user.username}
+            />  
         </div>
     )
 }

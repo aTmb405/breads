@@ -7,7 +7,7 @@ class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
     }
-// ********* clear reading state whenever logged out or failed login
+// clear reading state whenever logged out or failed login
     render() {
         const { readings } = this.props;
         let readingsList = readings.map(r => (
@@ -36,12 +36,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchReadings })(ReadingsList);
-
-// article list
-    // article
-        // user, url, date, word count
-// navbar
-    // sign up
-    // log out
-    // log in
-// post url
