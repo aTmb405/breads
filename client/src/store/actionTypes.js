@@ -3,3 +3,5 @@ export const REMOVE_ERROR = 'REMOVE_ERROR';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOAD_READINGS = 'LOAD_READINGS';
 export const REMOVE_READING = 'REMOVE_READING';
+export const GLOBAL_LIST = 'GLOBAL_LIST';
+export const USER_LIST = 'USER_LIST';

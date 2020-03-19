@@ -1,20 +1,20 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ReadingsList from './ReadingsList';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 
+
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser } = props;
+    const { authUser, errors, removeError, currentUser, currentList } = props;
     return (
         <Switch>
             <Route
                 exact
                 path="/"
-                render={props => <Homepage currentUser={currentUser} {...props}/>}
+                render={props => <Homepage currentUser={currentUser} currentList={currentList} {...props}/>}
             />
             <Route
                 exact
@@ -49,11 +49,6 @@ const Routes = props => {
                     )
                 }}
             />
-            {/* <Route
-                exact
-                path='/articles'
-                render={() => <ReadingsList articles={this.props.articles} />}
-            /> */}
             {/* <Redirect to='/articles' /> */}
         </Switch>
     );
@@ -62,7 +57,8 @@ const Routes = props => {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    errors: state.errors
+    errors: state.errors,
+    currentList: state.currentList
   };
 }
 

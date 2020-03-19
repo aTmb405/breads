@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReadingsTimeline from "./ReadingsTimeline";
 
-const Homepage = ({ currentUser }) => {
+const Homepage = ({ currentUser, currentList }) => {
     if (!currentUser.isAuthenticated) {
         return (
             <div className="home-hero">
@@ -19,6 +19,7 @@ const Homepage = ({ currentUser }) => {
             <ReadingsTimeline
                 image={currentUser.user.image}
                 username={currentUser.user.username}
+                list={currentList.list}
             />  
         </div>
     )

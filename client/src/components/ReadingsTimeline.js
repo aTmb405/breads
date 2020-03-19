@@ -1,6 +1,7 @@
 import React from 'react';
-import ReadingsList from '../containers/ReadingsList';
 import UserAside from './UserAside';
+import ReadingsList from '../containers/ReadingsList';
+import UserReadingsList from '../containers/UserReadingsList';
 
 const ReadingsTimeline = props => {
     return (
@@ -9,7 +10,11 @@ const ReadingsTimeline = props => {
                 image={props.image}
                 username={props.username}
             />
-            <ReadingsList />
+            {props.list === 'global' ? (
+                <ReadingsList />
+            ) : (
+                <UserReadingsList />
+            )}
         </div>
     )
 }
