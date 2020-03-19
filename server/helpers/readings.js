@@ -1,65 +1,68 @@
-let db = require("../models"),
-    select = require("./users");
+let db = require('../models'),
+    users = require('./users');
+    articles = require('./articles');
 
 // READ, UPDATE, DELETE
+exports.create = async (reading) => {
+    try {
+        let username = reading.username,
+            url = reading.url;
 
-exports.create = (reading) => {
-    let user = '',
-        article = '';
+        let user = await users.findByUsername(username),
+            article = await articles.findByUrl(url);
 
-    //refactor
-    let articleId = new Promise(function (resolve, reject) {
-        db.connection.query("SELECT * FROM articles WHERE url = ?", reading.url, function (err, results) {
-            if (err) reject(err);
-            else resolve(results);
-        });
-    });
-    
-    select.findByUsername(reading.username).then(function(results) {
-        user = results[0].id;
-        return articleId;
-    }).then(function(results) {
-        article = results[0].id;
-        let post = new Promise(function (resolve, reject) {
-            db.connection.query("INSERT INTO readings (user_id, article_id) VALUES (?)", [[user, article]], function (err, results) {
-                if (err) reject(err);
-                return resolve(results);
-            });
-        });
-        return post;
-    }).catch(function(err) {
-        console.log("createReading error");
+        return this.insert(user[0].id, article[0].id);
+    }
+    catch (err) {
+        console.log('create - helpers/readings');
         throw err;
-    });
+    }
 }
 
-exports.findByUserId = (userId) => {
-    let articles = [];
-    let readings = new Promise(function(resolve, reject) {
+exports.findByUserId = async (userId) => {
+    try {
+        let articleIds = [];
+        let readings = await this.getUserId(userId);
+
+        readings.forEach(res => {
+            articleIds.push(res.article_id);
+        })
+
+        if (articleIds.length) return await this.findArticlesById(articleIds);
+        else return articleIds;
+    }
+    catch (err) {
+        console.log('findByUserId - helpers/readings');
+        throw err;
+    }
+}
+
+exports.insert = (user, article) => {
+    let reading = new Promise(function (resolve, reject) {
+        db.connection.query("INSERT INTO readings (user_id, article_id) VALUES (?)", [[user, article]], function (err, results) {
+            if (err) reject(err);
+            return resolve(results);
+        });
+    });
+    return reading;
+}
+
+exports.getUserId = (userId) => {
+    let id = new Promise(function(resolve, reject) {
         db.connection.query('SELECT * FROM readings WHERE user_id = ?', userId, function(err, results) {
             if (err) reject(err);
             return resolve(results);
         });
     });
+    return id;
+}
 
-    return readings.then(function(results) {
-        results.forEach(res => {
-            articles.push(res.article_id);
+exports.findArticlesById = (ids) => {
+    let articles = new Promise(function (resolve, reject) {
+        db.connection.query("SELECT * FROM articles WHERE id IN (?)", [ids], function (err, results) {
+            if (err) reject(err);
+            return resolve(results);
         });
-        if (articles.length) { //if the user has read articles
-            let getArticle = new Promise(function (resolve, reject) {
-                db.connection.query("SELECT * FROM articles WHERE id IN (?)", [articles], function (err, results) {
-                    if (err) reject(err);
-                    return resolve(results);
-                });
-            });
-            return getArticle;
-        } else { //return empty array if not
-            return articles;
-        }
-        
-    }).catch(function(err) {
-        console.log("findByUserId error");
-        throw err;
     });
+    return articles;
 }

@@ -20,7 +20,3 @@ exports.findAll = () => {
     });
     return articles;
 }
-
-// exports.findById = () => {
-
-// }

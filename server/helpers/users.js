@@ -1,23 +1,19 @@
 let db = require("../models"),
     bcrypt = require('bcrypt');
-    // util = require('util');
-
-// let query = util.promisify(db.connection.query).bind(db.connection.query);
 
 // UPDATE, DELETE
-
-exports.create = function(user) {  
-    let salt = bcrypt.genSaltSync(10),
-        hash = bcrypt.hashSync(user.password, salt);
+exports.create = async function(user) {  
+    try {
+        let salt = bcrypt.genSaltSync(10),
+            hash = bcrypt.hashSync(user.password, salt);
         
-    user.password = hash;
-    let newUser = new Promise(function(resolve, reject) {
-        db.connection.query("INSERT INTO users set ?", user, function (err, results) {
-            if (err) reject(err);
-            else resolve(results);
-        });
-    });
-    return newUser;
+        user.password = hash;
+        return await this.insert(user);
+    }
+    catch (err) {
+        console.log('create - helpers/users');
+        throw err;
+    }
 }
 
 exports.findByUsername = (username) => {
@@ -36,4 +32,14 @@ exports.delete = function(username, password) {
         if (err) throw err;
         else return this.values;
     });
+}
+
+exports.insert = (user) => {
+    let newUser = new Promise(function(resolve, reject) {
+        db.connection.query("INSERT INTO users set ?", user, function (err, results) {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+    return newUser;
 }
