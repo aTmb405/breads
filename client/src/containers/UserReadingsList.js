@@ -30,7 +30,7 @@ class ReadingsList extends Component {
                         </div>
                     </div>
                 ) : (
-                    <h2>You haven't read anything!</h2>
+                    <h2>You haven't read anything... Yet!!</h2>
                 )}
             </div>
         )

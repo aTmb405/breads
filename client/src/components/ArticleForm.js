@@ -16,11 +16,10 @@ class ArticleForm extends Component {
         });
     };
 
-    handleNewMessage = (event) => {
+    handleNewUrl = (event) => {
         event.preventDefault();
         this.props.postNewReading(this.state.url);
         this.setState({ url: "" });
-        console.log(this.props);
         // this.props.history.push("/");
         // this.props.history.goBack();
         // window.location.reload(false);
@@ -44,7 +43,7 @@ class ArticleForm extends Component {
         const { errors, readings } = this.props;
 
         return (
-                <form onSubmit={this.handleNewMessage} className='form-inline'>
+                <form onSubmit={this.handleNewUrl} className='form-inline'>
                     {errors.message && (
                         <div className='alert alert-danger p-1 mb-2 small'>{errors.message}</div>
                     )}

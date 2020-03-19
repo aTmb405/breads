@@ -46,16 +46,20 @@ exports.findByUserId = (userId) => {
         results.forEach(res => {
             articles.push(res.article_id);
         });
-        
-        let getArticle = new Promise(function (resolve, reject) {
-            db.connection.query("SELECT * FROM articles WHERE id IN (?)", [articles], function (err, results) {
-                if (err) reject(err);
-                return resolve(results);
+        if (articles.length) { //if the user has read articles
+            let getArticle = new Promise(function (resolve, reject) {
+                db.connection.query("SELECT * FROM articles WHERE id IN (?)", [articles], function (err, results) {
+                    if (err) reject(err);
+                    return resolve(results);
+                });
             });
-        });
-        return getArticle;
+            return getArticle;
+        } else { //return empty array if not
+            return articles;
+        }
+        
     }).catch(function(err) {
-        console.log("findById error");
+        console.log("findByUserId error");
         throw err;
     });
 }

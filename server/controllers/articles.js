@@ -24,6 +24,9 @@ exports.createReading = async function(req, res, next) {
     }
     catch (err) {
         console.log("switched to try catch block");
+        if (err.code === 'ER_DUP_ENTRY') {
+            err.message = "You've already read that!";
+        }
         return next(err);
     }
     // let newReading = new Reading(req.params.username, req.body.url);
