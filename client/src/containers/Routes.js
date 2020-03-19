@@ -14,7 +14,15 @@ const Routes = props => {
             <Route
                 exact
                 path="/"
-                render={props => <Homepage currentUser={currentUser} currentList={currentList} {...props}/>}
+                render={props => {
+                    return (
+                        <Homepage
+                            currentUser={currentUser}
+                            currentList={currentList}
+                            {...props}
+                        />
+                    )
+                }}
             />
             <Route
                 exact
