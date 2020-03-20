@@ -16,7 +16,7 @@ class ReadingsList extends Component {
                 article_url={r.article_url}
                 // word_count={r.word_count}
                 user_id={r.user_id}
-                // image={r.user.image} //not correct user
+                image={readings[1].image} //not correct user
             />
         ));
         return (

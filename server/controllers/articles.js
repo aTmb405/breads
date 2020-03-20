@@ -1,14 +1,15 @@
 let { PythonShell } = require('python-shell'),
-    Reading = require("../models/reading").Reading,
-    readings = require("../helpers/readings"),
-    articles = require("../helpers/articles");
+    Reading = require('../models/reading').Reading,
+    readings = require('../helpers/readings'),
+    articles = require('../helpers/articles'),
+    users = require('../helpers/users');
 
 // fix next
 exports.scrapeArticle = function(req, res, next) {
     let options = { args: [req.body.url] }
     PythonShell.run('article_scraper.py', options, function (err, data) {
         if (err) {
-            console.log("scrapeArticle - controllers/articles");
+            console.log('scrapeArticle - controllers/articles');
             return next(err);
         }
         next();
@@ -33,6 +34,12 @@ exports.createReading = async function(req, res, next) {
 exports.listAllArticles = async function(req, res, next) {
     try {
         let allReadings = await articles.findAll();
+        let ids = [];
+        allReadings.forEach(reading => {
+            if (!ids.includes(reading.user_id)) ids.push(reading.user_id)
+        })
+        //readerUser info - how to return?
+        let user = await users.findByIds(ids);
         return res.status(200).json(allReadings);
     }
     catch (err) {

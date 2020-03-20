@@ -16,9 +16,19 @@ exports.create = async function(user) {
     }
 }
 
-exports.findByUsername = (username) => {
+exports.findById = (id) => {
     let user = new Promise(function(resolve, reject) {
-        db.connection.query("SELECT * FROM users WHERE username = ?", [username], function(err, results) {
+        db.connection.query("SELECT * FROM users WHERE id = ?", id, function(err, results) {
+            if (err) reject(err);
+            else resolve(results);  
+        });
+    });
+    return user;
+}
+
+exports.findByIds = (ids) => {
+    let user = new Promise(function(resolve, reject) {
+        db.connection.query("SELECT * FROM users WHERE id IN (?)", [ids], function(err, results) {
             if (err) reject(err);
             else resolve(results);  
         });
