@@ -9,12 +9,14 @@ class ReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings } = this.props;
+        const { readings } = this.props; //currentUser
         let readingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
-                url={r.url}
-                word_count={r.word_count}
+                article_url={r.article_url}
+                // word_count={r.word_count}
+                user_id={r.user_id}
+                // image={r.user.image} //not correct user
             />
         ));
         return (
@@ -26,7 +28,7 @@ class ReadingsList extends Component {
                         </div>
                     </div>
                 ) : (
-                    <h2>You haven't read anything!</h2>
+                    <h2>Nobody has read anything!</h2>
                 )}
             </div>
         )
@@ -35,7 +37,8 @@ class ReadingsList extends Component {
 
 function mapStateToProps(state) {
     return {
-        readings: state.readings
+        readings: state.readings,
+        // currentUser: state.currentUser
     }
 }
 

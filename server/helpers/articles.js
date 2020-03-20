@@ -1,22 +1,22 @@
-let db = require("../models");
+let db = require('../models');
 // CREATE, UPDATE, DELETE - create is in python scraper
 
 exports.findByUrl = (url) => {
-    let article = new Promise(function (resolve, reject) {
-        db.connection.query("SELECT * FROM articles WHERE url = ?", url, function (err, results) {
+    let reading = new Promise(function (resolve, reject) {
+        db.connection.query('SELECT * FROM readings WHERE article_url = ?', url, function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });
     });
-    return article;
+    return reading;
 }
 
 exports.findAll = () => {
-    let articles = new Promise(function (resolve, reject) {
-        db.connection.query("SELECT * FROM articles ORDER BY id DESC", function (err, results) {
+    let readings = new Promise(function (resolve, reject) {
+        db.connection.query('SELECT * FROM readings', function (err, results) { // ORDER BY id DESC
             if (err) reject(err);
             else resolve(results);
         });
     });
-    return articles;
+    return readings;
 }

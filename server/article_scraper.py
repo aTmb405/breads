@@ -28,7 +28,8 @@ def get_word_count():
 
 get_word_count()
 # get_author()
-
+title = ''
+author = ''
 ###############connect to db###############
 
 db = mysql.connect(
@@ -41,8 +42,8 @@ db = mysql.connect(
 
 cursor = db.cursor()
 
-query = "INSERT INTO articles VALUES (%s, %s, %s)"
-values = (0, BASE_URL, word_count)
+query = "INSERT INTO info VALUES (%s, %s, %s, %s, %s)"
+values = (0, BASE_URL, word_count, title, author)
 
 cursor.execute(query, values)
 db.commit()

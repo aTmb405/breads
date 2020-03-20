@@ -4,7 +4,6 @@ import ReadingsList from '../containers/ReadingsList';
 import UserReadingsList from '../containers/UserReadingsList';
 
 const ReadingsTimeline = props => {
-    console.log(props.list);
     return (
         <div className='row'>
             <UserAside

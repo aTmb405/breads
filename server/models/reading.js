@@ -1,7 +1,7 @@
 class Reading {
-    constructor(username, url) {
-        this.username = username,
-        this.url = url
+    constructor(url, id) {
+        this.url = url,
+        this.id = id
     }
 }
 

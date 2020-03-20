@@ -17,7 +17,7 @@ exports.scrapeArticle = function(req, res, next) {
 
 exports.createReading = async function(req, res, next) {
     try {
-        let newReading = new Reading(req.params.username, req.body.url);
+        let newReading = new Reading(req.body.url, req.params.id);
         let createdReading = await readings.create(newReading);
         return res.status(200).json(createdReading);
     }
@@ -32,8 +32,8 @@ exports.createReading = async function(req, res, next) {
 
 exports.listAllArticles = async function(req, res, next) {
     try {
-        let allArticles = await articles.findAll();
-        return res.status(200).json(allArticles);
+        let allReadings = await articles.findAll();
+        return res.status(200).json(allReadings);
     }
     catch (err) {
         console.log('listAllArticles - controllers/articles');
@@ -43,8 +43,8 @@ exports.listAllArticles = async function(req, res, next) {
 
 exports.listUserArticles = async function(req, res, next) {
     try {
-        let userArticles = await readings.findByUserId(req.params.id);
-        return res.status(200).json(userArticles);
+        let userReadings = await readings.findByUserId(req.params.id);
+        return res.status(200).json(userReadings);
     }
     catch (err) {
         console.log('listUserArticles - controllers/readings');

@@ -50,8 +50,8 @@ export const fetchUserReadings = () => {
 
 export const postNewReading = url => (dispatch, getState) => {
     let { currentUser } = getState();
-    const username = currentUser.user.username;
-    return apiCall('post', `/users/${username}/articles`, { url })
+    const id = currentUser.user.id;
+    return apiCall('post', `/users/${id}/articles`, { url })
         .then(res => {})
         .catch(err => dispatch(addError(err.message)));
 }

@@ -27,12 +27,12 @@ exports.findByUsername = (username) => {
 }
 
 // fix next
-exports.delete = function(username, password) {
-    db.connection.query("DELETE FROM users WHERE username = ? AND password = ?", [username, password], function(err, results) {
-        if (err) throw err;
-        else return this.values;
-    });
-}
+// exports.delete = function(username, password) {
+//     db.connection.query("DELETE FROM users WHERE username = ? AND password = ?", [username, password], function(err, results) {
+//         if (err) throw err;
+//         else return this.values;
+//     });
+// }
 
 exports.insert = (user) => {
     let newUser = new Promise(function(resolve, reject) {

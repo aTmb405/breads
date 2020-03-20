@@ -13,7 +13,6 @@ const UserAside = ({ image, username, list, readings }) => {
         totalBooks = <p className='card-text'>Book Equivalents: {totalWords}</p>;
     }
     
-
     return (
         <aside className='col-sm-2'>
             <div className='card'>

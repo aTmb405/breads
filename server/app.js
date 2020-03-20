@@ -32,7 +32,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/api/auth/", authRoutes);
 // /api/users/:username (read)
 // /api/users/create, update, delete
-app.use("/api/users/:username/articles",
+app.use("/api/users/:id/articles",
         auth.loginRequired, auth.ensureCorrectUser,
         articleRoutes);
 
