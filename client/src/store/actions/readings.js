@@ -1,16 +1,16 @@
 import { apiCall } from '../../services/api';
 import { addError } from './errors';
-import { LOAD_READINGS, REMOVE_READING } from '../actionTypes';
+import { LOAD_READINGS } from '../actionTypes'; //REMOVE_READING
 
 export const loadReadings = readings => ({
     type: LOAD_READINGS,
     readings
 });
 
-export const removeReadings = id => ({
-    type: REMOVE_READING,
-    id
-});
+// export const removeReadings = id => ({
+//     type: REMOVE_READING,
+//     id
+// });
 
 // export const removeReading = (user_id, article_id) => {
 //     return dispatch => {

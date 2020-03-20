@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode';
 const store = configureStore(); //the store controls all of the state in app
 
 //persistent jwtToken storage
-if (localStorage.jwtToken) {
+if (localStorage.jwtToken) { 
     setAuthorizationToken(localStorage.jwtToken);
     //prevent someone from manually tampering with the key of jwtToken in localStorage
     try {

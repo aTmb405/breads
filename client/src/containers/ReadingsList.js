@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchReadings, fetchUserReadings } from '../store/actions/readings';
+import { fetchReadings } from '../store/actions/readings';
 import ReadingItem from '../components/ReadingItem';
-
-// user article list
-    // user id
-    // readings
 
 class ReadingsList extends Component {
     componentDidMount() {
@@ -43,4 +39,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchReadings, fetchUserReadings })(ReadingsList);
+export default connect(mapStateToProps, { fetchReadings })(ReadingsList);

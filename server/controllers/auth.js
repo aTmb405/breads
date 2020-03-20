@@ -1,12 +1,12 @@
-let User = require("../models/user").User,
+let User = require('../models/user').User,
     jwt = require('jsonwebtoken'),
     comparePassword = require('../helpers/auth').comparePassword;
-    select = require("../helpers/users");
+    users = require('../helpers/users');
 
 exports.signup = async function(req, res, next) {
     let newUser = new User(req.body.first_name, req.body.last_name, req.body.username, req.body.email, req.body.password, req.body.image);
     try {
-        let userId = await select.create(newUser);
+        let userId = await users.create(newUser);
         let token = jwt.sign(
             { 
                 id: userId.insertId,
@@ -24,7 +24,7 @@ exports.signup = async function(req, res, next) {
     }
     catch (err) {
         if (err.code === 'ER_DUP_ENTRY') {
-            err.message = "Sorry, that username and/or email is taken";
+            err.message = 'Sorry, that username and/or email is taken';
         }
         return next({
             status: 400,
@@ -34,13 +34,17 @@ exports.signup = async function(req, res, next) {
 }
 
 exports.signin = async function(req, res, next) {
-    let username = req.body.username,
-        password = req.body.password;
     try {
-        let user = await select.findByUsername(username)
+        let username = req.body.username,
+            password = req.body.password;
+        let user = await users.findByUsername(username)
         comparePassword(password, user[0].password, function(err, isMatch) {
             if (isMatch) {
-                let token = jwt.sign({ username }, process.env.SECRET_KEY);
+                let token = jwt.sign({ 
+                    id: user[0].id,
+                    username,
+                    image: user[0].image
+                }, process.env.SECRET_KEY);
                 return res.status(200).json({
                     id: user[0].id,
                     username,
@@ -49,7 +53,7 @@ exports.signin = async function(req, res, next) {
             } else {
                 return next({
                     status: 400,
-                    message: "Invalid Email/Password."
+                    message: 'Invalid Email/Password.'
                 });
             }
         });
@@ -57,7 +61,7 @@ exports.signin = async function(req, res, next) {
     catch (err) {
         return next({
             status: 400,
-            message: "Invalid Email/Password."
+            message: 'Invalid Email/Password.'
         });
     }
 }

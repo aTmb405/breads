@@ -1,4 +1,4 @@
-import { LOAD_READINGS, REMOVE_READING } from '../actionTypes';
+import { LOAD_READINGS } from '../actionTypes'; //REMOVE_READING
 
 const reading = (state=[], action) => {
     switch (action.type) {

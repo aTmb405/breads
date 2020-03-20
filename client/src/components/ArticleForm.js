@@ -40,7 +40,7 @@ class ArticleForm extends Component {
 
     render() {
         const { url } = this.state;
-        const { errors, readings } = this.props;
+        const { errors } = this.props; //readings
 
         return (
                 <form onSubmit={this.handleNewUrl} className='form-inline'>
