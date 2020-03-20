@@ -10,7 +10,7 @@ class UserReadingsList extends Component {
 // clear reading state whenever logged out or failed login
     render() {
         const { readings } = this.props;
-        let readingsList = readings.map(r => (
+        let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
                 url={r.url}
@@ -22,7 +22,7 @@ class UserReadingsList extends Component {
                 {this.props.readings.length ? (
                     <div className='offset-1 col-sm-10'>
                         <div className='list-group' id='readings'>
-                            {readingsList}
+                            {userReadingsList}
                         </div>
                     </div>
                 ) : (

@@ -8,7 +8,7 @@ import { removeError } from '../store/actions/errors';
 
 
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser, currentList } = props;
+    const { authUser, errors, removeError, currentUser, currentList, readings } = props;
     return (
         <Switch>
             <Route
@@ -19,6 +19,7 @@ const Routes = props => {
                         <Homepage
                             currentUser={currentUser}
                             currentList={currentList}
+                            readings={readings}
                             {...props}
                         />
                     )
@@ -66,7 +67,8 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
-    currentList: state.currentList
+    currentList: state.currentList,
+    readings: state.readings
   };
 }
 
