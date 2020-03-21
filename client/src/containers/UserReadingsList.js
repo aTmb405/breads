@@ -14,10 +14,12 @@ class UserReadingsList extends Component {
         let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
-                article_url={r.article_url}
-                // word_count={r.word_count}
+                id={r.id}
+                url={r.url}
+                word_count={r.word_count}
+                title={r.title}
+                domain={r.domain}
                 user_id={r.user_id}
-                article_id={r.id}
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
             />

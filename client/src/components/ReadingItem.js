@@ -1,11 +1,10 @@
 import React from 'react';
+// import { connectAdvanced } from 'react-redux';
 // import Moment from 'react-moment';
 // import { Link } from 'react-router-dom';
 // import DefaultImage from '../images/default-profile-image.jpg';
 
-
-
-const ReadingItem = ({ article_url, article_id, title, domain, summary, viewSummary }) => { //username, image, word_count
+const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, viewSummary }) => { //username, image
     return (
         <li className='list-group-item'>
             {/* if list === 'global' */}
@@ -17,20 +16,14 @@ const ReadingItem = ({ article_url, article_id, title, domain, summary, viewSumm
                 className="timeline-image"
             /> */}
             <div className='reading-area'>
-                {/* {summary ? (
-                    <p>{summary}</p>
-                ) : (
-                    <span> */}
-                        <p>{title}</p>
-                        <p>{domain}</p>
-                        {/* <p>User: {user_id}</p> */}
-                        <button onClick={viewSummary} className='btn btn-outline-primary btn-sm mb-2'>View Summary</button>
-                        {summary.id == article_id && (
-                        <p>{summary.data}</p>
-                        )}
-                    {/* </span>
-                )} */}
-                    {/* <p>Words in Article: ~{word_count}</p> */}
+                    <p>{title}</p>
+                    <p>{domain}</p>
+                    <p>User: {user_id}</p>
+                    <button onClick={viewSummary} className='btn btn-outline-primary btn-sm mb-2'>View Summary</button>
+                    {summary.id == id && (
+                    <p>{summary.data}</p>
+                    )}
+                    <p>Words in Article: ~{word_count}</p>
             </div>
         </li>
     )

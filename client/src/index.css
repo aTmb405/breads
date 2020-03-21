@@ -25,7 +25,7 @@ code {
     justify-content: center;
     z-index: -1;
     background-color: skyblue;
-    /* background-image: url("./images/signed-out-home.jpg"); */
+    /* background-image: url('./images/signed-out-home.jpg'); */
     text-align: center;
     padding: 1rem;
     background-position: center center;

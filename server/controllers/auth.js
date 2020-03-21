@@ -4,8 +4,8 @@ let User = require('../models/user').User,
     users = require('../helpers/users');
 
 exports.signup = async function(req, res, next) {
-    let newUser = new User(req.body.first_name, req.body.last_name, req.body.username, req.body.email, req.body.password, req.body.image);
     try {
+        let newUser = new User(req.body.first_name, req.body.last_name, req.body.username, req.body.email, req.body.password, req.body.image);
         let userId = await users.create(newUser);
         let token = jwt.sign(
             { 
@@ -15,7 +15,7 @@ exports.signup = async function(req, res, next) {
             }, 
             process.env.SECRET_KEY
         );
-        res.status(200).json({ 
+        return res.status(200).json({ 
             id: userId.insertId,
             username: newUser.username,
             image: newUser.image,
@@ -49,11 +49,12 @@ exports.signin = async function(req, res, next) {
                     id: user[0].id,
                     username,
                     image: user[0].image,
-                    token});
+                    token
+                });
             } else {
                 return next({
                     status: 400,
-                    message: 'Invalid Email/Password.'
+                    message: 'Invalid Username/Password.'
                 });
             }
         });
@@ -61,7 +62,7 @@ exports.signin = async function(req, res, next) {
     catch (err) {
         return next({
             status: 400,
-            message: 'Invalid Email/Password.'
+            message: 'Invalid Username/Password.'
         });
     }
 }

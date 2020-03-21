@@ -10,50 +10,48 @@ import os
 load_dotenv()
 
 ####################scraping code####################
+# print(sys.argv[1])
 BASE_URL = sys.argv[1]
-# BASE_URL = 'https://www.artofmanliness.com/articles/sunday-firesides-build-your-life-upon-multiple-pillars-of-support/'
+USER_ID = sys.argv[2]
+# print(USER_ID)
+# BASE_URL = 'https://www.artofmanliness.com_readings/sunday-firesides-build-your-life-upon-multiple-pillars-of-support/'
 word_count = 0
-article = ''
+reading = ''
 title = ''
-author = ''
-# domain = ''
+# author = ''
+domain = ''
 response = requests.get(f'{BASE_URL}')
 soup = BeautifulSoup(response.text, 'html.parser')
 
-def get_article():
+def get_reading():
     paragraphs = soup.find_all('p')
     all_words = [tag.get_text().strip() for tag in paragraphs]
     # Filter out sentences that contain newline characters '\n' or don't contain periods.
     sentence_list = [sentence for sentence in all_words if not '\n' in sentence]
     sentence_list = [sentence for sentence in sentence_list if '.' in sentence]
     # Combine list items into string.
-    global article
-    article = ' '.join(sentence_list)
-    print(article)
-
-def get_word_count():
-    # word_string = ''.join([str(word.get_text()) for word in article])
-    global word_count
-    # word_count = len(word_string)
-    word_count = len(article)
-    print(word_count)
+    global reading
+    reading = ' '.join(sentence_list)
+    # print_reading)
 
 def get_title():
     title_element = soup.find('h1')
     global title
     title = title_element.get_text()
-    print(title)
+    # print(title)
 
 def get_domain():
+    global domain
     domain = re.search(r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]', BASE_URL)
-    global author
-    author = domain.group()
-    print(author)
+    domain = domain.group()
+    # print(domain)
 
-# def get_summary():
-#     summary = summarize(article, ratio=0.3)
-#     print(summary)
-#     print(len(summary))
+def get_word_count():
+    # word_string = ''.join([str(word.get_text()) for word in reading])
+    global word_count
+    # word_count = len(word_string)
+    word_count = len(reading)
+    # print(word_count)
 
 # def get_author():
 #     # pattern = re.compile(r'author')
@@ -61,10 +59,11 @@ def get_domain():
 #     author = soup.find(class_ = 'author')
 #     print(author.get_text())
 
-get_article()
-get_word_count()
+get_reading()
 get_title()
 get_domain()
+get_word_count()
+
 # get_summary()
 
 ###############connect to db###############
@@ -79,9 +78,16 @@ db = mysql.connect(
 
 cursor = db.cursor()
 
-query = 'INSERT INTO info VALUES (%s, %s, %s, %s, %s)'
-values = (0, BASE_URL, word_count, title, author)
-
+query = 'INSERT INTO readings (title, domain, word_count, url, user_id) VALUES (%(title)s, %(domain)s, %(word_count)s, %(url)s, %(user_id)s)'
+# values = (title, domain, word_count, BASE_URL, USER_ID)
+values = {
+    'title': title, 
+    'domain': domain,
+    'word_count': word_count, 
+    'url': BASE_URL,
+    'user_id': USER_ID
+}
+print(values)
 cursor.execute(query, values)
 db.commit()
 

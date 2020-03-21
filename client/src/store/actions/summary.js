@@ -7,9 +7,9 @@ export const loadSummary = summary => ({
     summary
 });
 
-export const fetchSummary = (article_id, url) => {
+export const fetchSummary = (reading_id) => {
     return dispatch => {
-        return apiCall('get', `/summary/${article_id}`)
+        return apiCall('get', `/summary/${reading_id}`)
             .then(res => {
                 dispatch(loadSummary(res));
             })

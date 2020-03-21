@@ -14,7 +14,7 @@ export const loadReadings = readings => ({
 
 // export const removeReading = (user_id, article_id) => {
 //     return dispatch => {
-//       return apiCall('delete', `/api/users/${user_id}/articles/${article_id}`)
+//       return apiCall('delete', `/api/users/${user_id}/readings/${article_id}`)
 //         .then(() => dispatch(remove(article_id)))
 //         .catch(err => {
 //           dispatch(addError(err.message));
@@ -24,10 +24,7 @@ export const loadReadings = readings => ({
 
 export const fetchReadings = () => {
     return dispatch => { //getState
-        // let { currentUser } = getState();
-        // const id = currentUser.user.id;
-        // return apiCall('get', `/users/${id}/articles`)
-        return apiCall('get', '/articles')
+        return apiCall('get', '/readings')
             .then(res => {
                 dispatch(loadReadings(res));
             })
@@ -41,7 +38,7 @@ export const fetchUserReadings = () => {
     return (dispatch, getState) => {
         let {currentUser} = getState();
         const id = currentUser.user.id;
-        return apiCall('get', `/articles/${id}`)
+        return apiCall('get', `/readings/${id}`)
             .then(res => {
                 // console.log(res);
                 dispatch(loadReadings(res));
@@ -55,7 +52,7 @@ export const fetchUserReadings = () => {
 export const postNewReading = url => (dispatch, getState) => {
     let { currentUser } = getState();
     const id = currentUser.user.id;
-    return apiCall('post', `/users/${id}/articles`, { url })
+    return apiCall('post', `/users/${id}/readings`, { url })
         .then(res => {})
         .catch(err => dispatch(addError(err.message)));
 }

@@ -10,6 +10,8 @@ class ArticleForm extends Component {
         }
     }
 
+    // need to immediately add to readings list
+
     handleChange = e => {
         this.setState({
             url: e.target.value
@@ -24,19 +26,7 @@ class ArticleForm extends Component {
         // this.props.history.goBack();
         // window.location.reload(false);
         // this.props.fetchReadings();
-        
     };
-
-    // need to immediately add to readings list
-    // componentDidUpdate(prevProps, prevState) {
-    //   console.log(prevState);
-    //     if (prevProps.readings.length > 0 && this.props.readings[0] !== prevState.url) {
-    //         console.log("in componentdidupdate");
-    //         console.log(prevProps.readings[0].url);
-    //         console.log(this.props.readings[0].url);
-    //         this.props.fetchReadings();
-    //     }
-    // }
 
     render() {
         const { url } = this.state;

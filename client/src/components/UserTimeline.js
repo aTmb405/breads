@@ -1,8 +1,8 @@
 import React from 'react';
 import UserAside from './UserAside';
-import ReadingsList from '../containers/ReadingsList';
+import UserReadingsList from '../containers/UserReadingsList';
 
-const ReadingsTimeline = props => {
+const UserTimeline = props => {
     return (
         <div className='row'>
             <UserAside
@@ -11,9 +11,9 @@ const ReadingsTimeline = props => {
                 list={props.list}
                 readings={props.readings}
             />
-            <ReadingsList />
+            <UserReadingsList />
         </div>
     )
 }
 
-export default ReadingsTimeline;
+export default UserTimeline;

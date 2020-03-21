@@ -1,14 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import ReadingsTimeline from "./ReadingsTimeline";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import ReadingsTimeline from './ReadingsTimeline';
+import UserTimeline from './UserTimeline';
 
 const Homepage = ({ currentUser, currentList, readings }) => {
     if (!currentUser.isAuthenticated) {
         return (
-            <div className="home-hero">
+            <div className='home-hero'>
                 <h1>What's Happening?</h1>
                 <h4>New to READINGS?</h4>
-                <Link to="/signup" className="btn btn-primary">
+                <Link to='/signup' className='btn btn-primary'>
                     Sign up here
                 </Link>
             </div>
@@ -16,12 +17,20 @@ const Homepage = ({ currentUser, currentList, readings }) => {
     }
     return (
         <div>
-            <ReadingsTimeline
-                image={currentUser.user.image}
-                username={currentUser.user.username}
-                list={currentList.list}
-                readings={readings}
-            />  
+            {currentList.list === 'global' ? (
+                <ReadingsTimeline
+                    image={currentUser.user.image}
+                    username={currentUser.user.username}
+                    readings={readings}
+                /> 
+            ) : (
+                <UserTimeline
+                    image={currentUser.user.image}
+                    username={currentUser.user.username}
+                    readings={readings}
+                    list={currentList}
+                />
+            )}
         </div>
     )
 }

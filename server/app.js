@@ -9,40 +9,40 @@
     // python
     // errorhandler?
 
-require("dotenv").config();
+require('dotenv').config();
 let express = require('express'),
     app = express(),
-    bodyParser  = require("body-parser"),
-    errorHandler = require("./controllers/error").errorHandler,
-    authRoutes = require("./routes/auth"),
-    articleRoutes = require("./routes/articles"),
+    bodyParser  = require('body-parser'),
+    errorHandler = require('./controllers/error').errorHandler,
+    authRoutes = require('./routes/auth'),
+    readingRoutes = require('./routes/readings'),
     cors = require('cors'),
     auth = require('./middleware/auth'),
-    helpers = require("./controllers/articles");
+    helpers = require('./controllers/readings');
 
 const PORT = 8080;
 
 app.set('views', './views');
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 app.use(cors()); //{origin: true, credentials: true}
 // app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'));
 
-app.use("/api/auth/", authRoutes);
+app.use('/api/auth/', authRoutes);
 // /api/users/:username (read)
 // /api/users/create, update, delete
-app.use("/api/users/:id/articles",
+app.use('/api/users/:id/readings',
         auth.loginRequired, auth.ensureCorrectUser,
-        articleRoutes);
+        readingRoutes);
 
-app.get("/api/articles", helpers.listAllArticles); //refactor
-app.get('/api/articles/:id', helpers.listUserArticles); //refactor
-app.get('/api/articles/find/info', helpers.showInfo); //refactor
-app.get('/api/summary/:article_id', helpers.summarizeArticle);
+// refactor
+app.get('/api/readings', helpers.listAllReadings);
+app.get('/api/readings/:id', helpers.listUserReadings);
+app.get('/api/summary/:id', helpers.summarizeReading);
 
 app.use(function(req, res, next) {
-    let err = new Error("Not Found");
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
