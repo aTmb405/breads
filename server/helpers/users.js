@@ -26,6 +26,16 @@ exports.findById = (id) => {
     return user;
 }
 
+exports.findByUsername = (username) => {
+    let user = new Promise(function(resolve, reject) {
+        db.connection.query("SELECT * FROM users WHERE username = ?", username, function(err, results) {
+            if (err) reject(err);
+            else resolve(results);  
+        });
+    });
+    return user;
+}
+
 exports.findByIds = (ids) => {
     let user = new Promise(function(resolve, reject) {
         db.connection.query("SELECT * FROM users WHERE id IN (?)", [ids], function(err, results) {

@@ -4,6 +4,9 @@ import React from 'react';
 // import DefaultImage from '../images/default-profile-image.jpg';
 
 const ReadingItem = ({ article_url, user_id }) => { //username, image, word_count
+    //componentDidMount() {
+        //this.fetchUserData();
+    //}
     return (
         <li className='list-group-item'>
             {/* if list === 'global' */}

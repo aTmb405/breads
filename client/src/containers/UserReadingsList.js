@@ -10,6 +10,8 @@ class UserReadingsList extends Component {
 // clear reading state whenever logged out or failed login
     render() {
         const { readings } = this.props; //currentUser
+        // console.log('UserReadingsList - ');
+        // console.log(readings);
         let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}

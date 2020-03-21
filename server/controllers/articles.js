@@ -6,7 +6,7 @@ let { PythonShell } = require('python-shell'),
 
 // fix next
 exports.scrapeArticle = function(req, res, next) {
-    let options = { args: [req.body.url] }
+    let options = { args: [req.body.url] };
     PythonShell.run('article_scraper.py', options, function (err, data) {
         if (err) {
             console.log('scrapeArticle - controllers/articles');
@@ -15,6 +15,17 @@ exports.scrapeArticle = function(req, res, next) {
         next();
     });
 }
+
+// exports.summarizeArticle = function (req, res, next) {
+//     let options = { args: [req.body.url] };
+//     PythonShell.run('article_summary.py', options, function (err, data) {
+//         if (err) {
+//             console.log('summarizeArticle - controllers/articles');
+//             return next(err);
+//         }
+//         next();
+//     });
+// }
 
 exports.createReading = async function(req, res, next) {
     try {
@@ -41,6 +52,10 @@ exports.listAllArticles = async function(req, res, next) {
         //readerUser info - how to return?
         let user = await users.findByIds(ids);
         return res.status(200).json(allReadings);
+        // return res.status(200).json([
+        //     {readings: allReadings},
+        //     {user: user}
+        // ]);
     }
     catch (err) {
         console.log('listAllArticles - controllers/articles');

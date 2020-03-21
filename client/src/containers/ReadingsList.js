@@ -10,14 +10,37 @@ class ReadingsList extends Component {
 // clear reading state whenever logged out or failed login
     render() {
         const { readings } = this.props; //currentUser
+        // console.log('ReadingsList - ');
+        // console.log(readings);
+        // [
+        //     {r: [
+        //         {}
+        //     ]}
+        //     {u: [
+        //         {}
+        //     ]}
+        // ]
         let readingsList = readings.map(r => (
+        // let readingsList = Object.keys(readings[0]).map(r => (
+            // console.log(r)
+            // Object.entries(r).map((reading, value) => {
+            //     <ReadingItem
+            //         key={r2.id}
+            //         article_url={r2.article_url}
+            //         // word_count={r.word_count}
+            //         user_id={r2.user_id}
+            //         image={readings[1].image} //not correct user
+            //     />
+            // })
+            
             <ReadingItem
                 key={r.id}
                 article_url={r.article_url}
                 // word_count={r.word_count}
                 user_id={r.user_id}
-                image={readings[1].image} //not correct user
+                // image={readings[1].image} //not correct user
             />
+            
         ));
         return (
             <div className='row col-sm-8'>
