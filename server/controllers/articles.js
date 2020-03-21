@@ -16,16 +16,21 @@ exports.scrapeArticle = function(req, res, next) {
     });
 }
 
-// exports.summarizeArticle = function (req, res, next) {
-//     let options = { args: [req.body.url] };
-//     PythonShell.run('article_summary.py', options, function (err, data) {
-//         if (err) {
-//             console.log('summarizeArticle - controllers/articles');
-//             return next(err);
-//         }
-//         next();
-//     });
-// }
+exports.summarizeArticle = async (req, res, next) => {
+    let article = await articles.findById(req.params.article_id);
+    let options = { args: [article[0].article_url] };
+    
+    PythonShell.run('article_summary.py', options, function (err, data) {
+        if (err) {
+            console.log('summarizeArticle - controllers/articles');
+            return next(err);
+        }
+        return res.status(200).json({
+            id: req.params.article_id,    
+            data
+        });
+    });
+}
 
 exports.createReading = async function(req, res, next) {
     try {
@@ -72,4 +77,17 @@ exports.listUserArticles = async function(req, res, next) {
         console.log('listUserArticles - controllers/readings');
         return next(err);
     }
+}
+
+exports.showSummary = () => {
+    let pyshell = new PythonShell('article_summary.py');
+
+    pyshell.on('message', async message => {
+        console.log(message);
+        return await message;
+    });
+
+    pyshell.end(err => {
+        if (err) throw err;
+    })
 }

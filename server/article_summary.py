@@ -3,13 +3,16 @@ from bs4 import BeautifulSoup
 import sys
 from dotenv import load_dotenv
 from gensim.summarization import summarize
+import json
 
 load_dotenv()
 
 ####################scraping code####################
-# BASE_URL = sys.argv[1]
-BASE_URL = 'https://www.artofmanliness.com/articles/sunday-firesides-build-your-life-upon-multiple-pillars-of-support/'
+# print(sys.argv[1])
+BASE_URL = sys.argv[1]
+# BASE_URL = 'https://www.artofmanliness.com/articles/sunday-firesides-build-your-life-upon-multiple-pillars-of-support/'
 article = ''
+summary = ''
 response = requests.get(f'{BASE_URL}')
 soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -22,12 +25,22 @@ def get_article():
     # Combine list items into string.
     global article
     article = ' '.join(sentence_list)
-    print(article)
+    # print(article)
 
 def get_summary():
+    global summary
     summary = summarize(article, ratio=0.3)
     print(summary)
-    print(len(summary))
+    # print(len(summary))
 
 get_article()
 get_summary()
+
+# response = {'summary': summary}
+
+# def retjson():
+#     py_json = json.dumps(response)
+#     # print(py_json)
+#     return py_json
+
+# retjson()

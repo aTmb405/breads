@@ -3,7 +3,7 @@ let express = require("express"),
     helpers = require("../controllers/articles");
 
 // router.get("/all", helpers.listAllArticles);
-// router.get("/", helpers.listAllArticles);
+// router.get("/", helpers.summarizeArticle);
 router.post("/", helpers.scrapeArticle, helpers.createReading);
 
 module.exports = router;

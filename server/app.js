@@ -38,6 +38,7 @@ app.use("/api/users/:id/articles",
 
 app.get("/api/articles", helpers.listAllArticles); //refactor
 app.get('/api/articles/:id', helpers.listUserArticles); //refactor
+app.get('/api/summary/:article_id', helpers.summarizeArticle);
 
 app.use(function(req, res, next) {
     let err = new Error("Not Found");

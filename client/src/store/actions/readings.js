@@ -29,7 +29,6 @@ export const fetchReadings = () => {
         return apiCall('get', '/articles')
         // return apiCall('get', `/users/${id}/articles`)
             .then(res => {
-                // console.log(res);
                 dispatch(loadReadings(res));
             })
             .catch(err => {

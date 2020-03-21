@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchReadings } from '../store/actions/readings';
+import { fetchSummary } from '../store/actions/summary';
 import ReadingItem from '../components/ReadingItem';
 
 class ReadingsList extends Component {
@@ -9,38 +10,18 @@ class ReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings } = this.props; //currentUser
-        // console.log('ReadingsList - ');
-        // console.log(readings);
-        // [
-        //     {r: [
-        //         {}
-        //     ]}
-        //     {u: [
-        //         {}
-        //     ]}
-        // ]
-        let readingsList = readings.map(r => (
-        // let readingsList = Object.keys(readings[0]).map(r => (
-            // console.log(r)
-            // Object.entries(r).map((reading, value) => {
-            //     <ReadingItem
-            //         key={r2.id}
-            //         article_url={r2.article_url}
-            //         // word_count={r.word_count}
-            //         user_id={r2.user_id}
-            //         image={readings[1].image} //not correct user
-            //     />
-            // })
-            
+        const { readings, summary, fetchSummary } = this.props; //currentUser
+        let readingsList = readings.map(r => (           
             <ReadingItem
                 key={r.id}
                 article_url={r.article_url}
                 // word_count={r.word_count}
                 user_id={r.user_id}
                 // image={readings[1].image} //not correct user
-            />
-            
+                article_id={r.id}
+                summary={summary.summary}
+                viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
+            />     
         ));
         return (
             <div className='row col-sm-8'>
@@ -61,8 +42,9 @@ class ReadingsList extends Component {
 function mapStateToProps(state) {
     return {
         readings: state.readings,
+        summary: state.summary
         // currentUser: state.currentUser
     }
 }
 
-export default connect(mapStateToProps, { fetchReadings })(ReadingsList);
+export default connect(mapStateToProps, { fetchReadings, fetchSummary })(ReadingsList);
