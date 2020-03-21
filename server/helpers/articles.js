@@ -13,7 +13,7 @@ exports.findByUrl = url => {
 
 exports.findAll = () => {
     let readings = new Promise(function (resolve, reject) {
-        db.connection.query('SELECT * FROM readings', function (err, results) { // ORDER BY id DESC
+        db.connection.query('SELECT * FROM readings ORDER BY id DESC', function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });
@@ -23,10 +23,20 @@ exports.findAll = () => {
 
 exports.findById = id => {
     let reading = new Promise(function (resolve, reject) {
-        db.connection.query('SELECT * FROM readings WHERE id = ?', id, function (err, results) {
+        db.connection.query('SELECT * FROM info WHERE id = ?', id, function (err, results) { //readings
             if (err) reject(err);
             else resolve(results);
         });
     });
     return reading;
+}
+
+exports.findInfo = () => {
+    let info = new Promise(function (resolve, reject) {
+        db.connection.query('SELECT * FROM info ORDER BY id DESC', function (err, results) {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+    return info;
 }

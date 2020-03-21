@@ -18,7 +18,7 @@ exports.scrapeArticle = function(req, res, next) {
 
 exports.summarizeArticle = async (req, res, next) => {
     let article = await articles.findById(req.params.article_id);
-    let options = { args: [article[0].article_url] };
+    let options = { args: [article[0].url] }; //article_url
     
     PythonShell.run('article_summary.py', options, function (err, data) {
         if (err) {
@@ -47,15 +47,16 @@ exports.createReading = async function(req, res, next) {
     }
 }
 
+
 exports.listAllArticles = async function(req, res, next) {
     try {
         let allReadings = await articles.findAll();
-        let ids = [];
-        allReadings.forEach(reading => {
-            if (!ids.includes(reading.user_id)) ids.push(reading.user_id)
-        })
         //readerUser info - how to return?
-        let user = await users.findByIds(ids);
+        // let ids = [];
+        // allReadings.forEach(reading => {
+        //     if (!ids.includes(reading.user_id)) ids.push(reading.user_id)
+        // })
+        // let user = await users.findByIds(ids);
         return res.status(200).json(allReadings);
         // return res.status(200).json([
         //     {readings: allReadings},
@@ -83,11 +84,21 @@ exports.showSummary = () => {
     let pyshell = new PythonShell('article_summary.py');
 
     pyshell.on('message', async message => {
-        console.log(message);
         return await message;
     });
 
     pyshell.end(err => {
         if (err) throw err;
     })
+}
+
+exports.showInfo = async (req, res, next) => {
+    try {
+        let readingInfo = await articles.findInfo();
+        return res.status(200).json(readingInfo);
+    }
+    catch (err) {
+        console.log('showInfo - controllers/readings');
+        return next(err);
+    }
 }

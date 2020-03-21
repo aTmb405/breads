@@ -5,7 +5,7 @@ import React from 'react';
 
 
 
-const ReadingItem = ({ article_url, article_id, user_id, summary, viewSummary }) => { //username, image, word_count
+const ReadingItem = ({ article_url, article_id, title, domain, summary, viewSummary }) => { //username, image, word_count
     return (
         <li className='list-group-item'>
             {/* if list === 'global' */}
@@ -21,8 +21,9 @@ const ReadingItem = ({ article_url, article_id, user_id, summary, viewSummary })
                     <p>{summary}</p>
                 ) : (
                     <span> */}
-                        <p>{article_url}</p>
-                        <p>User: {user_id}</p>
+                        <p>{title}</p>
+                        <p>{domain}</p>
+                        {/* <p>User: {user_id}</p> */}
                         <button onClick={viewSummary} className='btn btn-outline-primary btn-sm mb-2'>View Summary</button>
                         {summary.id == article_id && (
                         <p>{summary.data}</p>
