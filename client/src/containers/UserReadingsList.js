@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserReadings } from '../store/actions/readings';
-import { fetchSummary } from '../store/actions/summary';
+import { fetchUserReadings, removeReading } from '../store/actions/readings';
+import { fetchSummary, removeSummary } from '../store/actions/summary';
 import ReadingItem from '../components/ReadingItem';
 
 class UserReadingsList extends Component {
@@ -10,7 +10,7 @@ class UserReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, summary, fetchSummary } = this.props; //currentUser
+        const { readings, removeReading, summary, fetchSummary, removeSummary  } = this.props; //currentUser
         let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
@@ -22,6 +22,8 @@ class UserReadingsList extends Component {
                 user_id={r.user_id}
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
+                removeSummary={removeSummary}
+                removeReading={removeReading.bind(this, r.user_id, r.id)}
             />
         ));
         return (
@@ -43,9 +45,10 @@ class UserReadingsList extends Component {
 function mapStateToProps(state) {
     return {
         readings: state.readings,
-        // currentUser: state.currentUser,
         summary: state.summary
+        // currentUser: state.currentUser
+        
     }
 }
 
-export default connect(mapStateToProps, { fetchUserReadings, fetchSummary })(UserReadingsList);
+export default connect(mapStateToProps, { fetchUserReadings, fetchSummary, removeReading, removeSummary })(UserReadingsList);

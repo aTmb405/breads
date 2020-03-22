@@ -4,6 +4,6 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOAD_READINGS = 'LOAD_READINGS';
 export const REMOVE_READING = 'REMOVE_READING';
 export const LOAD_SUMMARY = 'LOAD_SUMMARY';
+export const REMOVE_SUMMARY = 'REMOVE_SUMMARY';
 export const GLOBAL_LIST = 'GLOBAL_LIST';
 export const USER_LIST = 'USER_LIST';
-// export const USER_READINGS = 'USER_READINGS';

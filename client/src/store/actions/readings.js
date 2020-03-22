@@ -11,10 +11,6 @@ export const removeReadings = id => ({
     type: REMOVE_READING,
     id
 });
-// export const userReadings = readings => ({
-//     type: USER_READING,
-//     readings
-// });
 
 export const removeReading = (user_id, reading_id) => {
     return dispatch => {

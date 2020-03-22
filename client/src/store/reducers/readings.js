@@ -1,4 +1,4 @@
-import { LOAD_READINGS, REMOVE_READING } from '../actionTypes'; //USER_READINGS
+import { LOAD_READINGS, REMOVE_READING } from '../actionTypes';
 
 const reading = (state=[], action) => {
     switch (action.type) {
@@ -6,8 +6,6 @@ const reading = (state=[], action) => {
             return [...action.readings];
         case REMOVE_READING:
             return state.filter(reading => reading.id !== action.id);
-        // case USER_READING:
-        //     return state.filter(reading => reading.user_id !== action.user_id);
         default:
             return state;
     }

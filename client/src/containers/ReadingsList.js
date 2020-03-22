@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchReadings, removeReading } from '../store/actions/readings';
-import { fetchSummary } from '../store/actions/summary';
+import { fetchSummary, removeSummary } from '../store/actions/summary';
 import ReadingItem from '../components/ReadingItem';
 
 class ReadingsList extends Component {
@@ -10,7 +10,7 @@ class ReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, summary, removeReading, currentUser, fetchSummary } = this.props;
+        const { readings, removeReading, summary, fetchSummary, removeSummary, currentUser } = this.props;
         let readingsList = readings.map(r => (           
             <ReadingItem
                 key={r.id}
@@ -23,6 +23,7 @@ class ReadingsList extends Component {
                 domain={r.domain}
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
+                removeSummary={removeSummary}
                 removeReading={removeReading.bind(this, r.user_id, r.id)}
                 isCorrectUser={currentUser === r.user_id}
             />     
@@ -51,4 +52,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { fetchReadings, fetchSummary, removeReading })(ReadingsList);
+export default connect(mapStateToProps, { fetchReadings, fetchSummary, removeReading, removeSummary })(ReadingsList);
