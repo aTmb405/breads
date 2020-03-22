@@ -1,26 +1,30 @@
 import { apiCall } from '../../services/api';
 import { addError } from './errors';
-import { LOAD_READINGS } from '../actionTypes'; //REMOVE_READING
+import { LOAD_READINGS, REMOVE_READING } from '../actionTypes';
 
 export const loadReadings = readings => ({
     type: LOAD_READINGS,
     readings
 });
 
-// export const removeReadings = id => ({
-//     type: REMOVE_READING,
-//     id
+export const removeReadings = id => ({
+    type: REMOVE_READING,
+    id
+});
+// export const userReadings = readings => ({
+//     type: USER_READING,
+//     readings
 // });
 
-// export const removeReading = (user_id, article_id) => {
-//     return dispatch => {
-//       return apiCall('delete', `/api/users/${user_id}/readings/${article_id}`)
-//         .then(() => dispatch(remove(article_id)))
-//         .catch(err => {
-//           dispatch(addError(err.message));
-//         });
-//     };
-// };
+export const removeReading = (user_id, reading_id) => {
+    return dispatch => {
+      return apiCall('delete', `/users/${user_id}/readings/${reading_id}`)
+        .then(() => dispatch(removeReadings(reading_id)))
+        .catch(err => {
+          dispatch(addError(err.message));
+        });
+    };
+};
 
 export const fetchReadings = () => {
     return dispatch => { //getState
@@ -40,7 +44,6 @@ export const fetchUserReadings = () => {
         const id = currentUser.user.id;
         return apiCall('get', `/readings/${id}`)
             .then(res => {
-                // console.log(res);
                 dispatch(loadReadings(res));
             })
             .catch(err => {

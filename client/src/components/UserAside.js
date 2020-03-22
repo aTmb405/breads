@@ -5,7 +5,7 @@ const UserAside = ({ image, username, list, readings }) => {
     let totalArticles,
         totalBooks;
         // not working
-        console.log(list);
+        // console.log(list);
     if (list === 'user') {
         let totalWords = 0;
         readings.forEach(r => {

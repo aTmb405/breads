@@ -6,3 +6,4 @@ export const REMOVE_READING = 'REMOVE_READING';
 export const LOAD_SUMMARY = 'LOAD_SUMMARY';
 export const GLOBAL_LIST = 'GLOBAL_LIST';
 export const USER_LIST = 'USER_LIST';
+// export const USER_READINGS = 'USER_READINGS';

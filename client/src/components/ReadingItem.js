@@ -4,7 +4,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // import DefaultImage from '../images/default-profile-image.jpg';
 
-const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, viewSummary }) => { //username, image
+const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, viewSummary, removeReading, isCorrectUser }) => { //username, image
     return (
         <li className='list-group-item'>
             {/* if list === 'global' */}
@@ -24,6 +24,11 @@ const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, vie
                     <p>{summary.data}</p>
                     )}
                     <p>Words in Article: ~{word_count}</p>
+                    {isCorrectUser && (
+                        <button className="btn btn-outline-danger" onClick={removeReading}>
+                            Delete
+                        </button>
+                    )}
             </div>
         </li>
     )

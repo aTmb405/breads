@@ -1,6 +1,6 @@
 let readings = require('../helpers/readings');
 
-exports.createReading = async function(req, res, next) {
+exports.createReading = async (req, res, next) => {
     try {
         let reading = await readings.create(req.body.url, req.params.id);
         return res.status(200).json(reading);
@@ -26,7 +26,7 @@ exports.summarizeReading = async (req, res, next) => {
     }
 }
 
-exports.listAllReadings = async function(req, res, next) {
+exports.listAllReadings = async (req, res, next) => {
     try {
         let allReadings = await readings.findAll();
         return res.status(200).json(allReadings);
@@ -37,13 +37,24 @@ exports.listAllReadings = async function(req, res, next) {
     }
 }
 
-exports.listUserReadings = async function(req, res, next) {
+exports.listUserReadings = async (req, res, next) => {
     try {
         let userReadings = await readings.findByUserId(req.params.id);
         return res.status(200).json(userReadings);
     }
     catch (err) {
         console.log('listUserreadings - controllers/readings');
+        return next(err);
+    }
+}
+
+exports.deleteReading = async (req, res, next) => {
+    try {
+        let deletedReading = await readings.delete(req.params.reading_id);
+        return res.status(200).json(deletedReading);
+    }
+    catch (err) {
+        console.log('deleteReading - controllers/readings');
         return next(err);
     }
 }

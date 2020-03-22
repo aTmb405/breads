@@ -54,6 +54,16 @@ exports.findByUserId = (userId) => {
     return id;
 }
 
+exports.delete = id => {
+    let user = new Promise((resolve, reject) => {
+        db.connection.query('DELETE FROM readings WHERE id = ?', id, function(err, results) {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+    return user;
+}
+
 
 
 // *************************************************
