@@ -1,4 +1,4 @@
-// helpers/util
+// readings/util
     // pythonscraper
 // routes
     // users
@@ -18,7 +18,8 @@ let express = require('express'),
     readingRoutes = require('./routes/readings'),
     cors = require('cors'),
     auth = require('./middleware/auth'),
-    helpers = require('./controllers/readings');
+    readings = require('./controllers/readings'),
+    users = require('./controllers/users');
 
 const PORT = 8080;
 
@@ -36,10 +37,12 @@ app.use('/api/users/:id/readings',
         auth.loginRequired, auth.ensureCorrectUser,
         readingRoutes);
 
+app.get('/api/users', users.findAllUsers);
+
 // refactor
-app.get('/api/readings', helpers.listAllReadings);
-app.get('/api/readings/:id', helpers.listUserReadings);
-app.get('/api/summary/:id', helpers.summarizeReading);
+app.get('/api/readings', readings.listAllReadings);
+app.get('/api/readings/:id', readings.listUserReadings);
+app.get('/api/summary/:id', readings.summarizeReading);
 
 app.use(function(req, res, next) {
     let err = new Error('Not Found');

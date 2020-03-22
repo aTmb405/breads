@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReadingsTimeline from './ReadingsTimeline';
-import UserTimeline from './UserTimeline';
+import UserReadingsTimeline from './UserReadingsTimeline';
 
 const Homepage = ({ currentUser, currentList, readings, errors, removeErrors }) => {
     if (!currentUser.isAuthenticated) {
@@ -27,7 +27,7 @@ const Homepage = ({ currentUser, currentList, readings, errors, removeErrors }) 
                     readings={readings}
                 /> 
             ) : (
-                <UserTimeline
+                <UserReadingsTimeline
                     image={currentUser.user.image}
                     username={currentUser.user.username}
                     readings={readings}

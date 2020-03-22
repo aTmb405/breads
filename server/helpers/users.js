@@ -46,6 +46,16 @@ exports.delete = username => {
     return user;
 }
 
+exports.findAll = () => {
+    let users = new Promise(function (resolve, reject) {
+        db.connection.query('SELECT * FROM users ORDER BY id DESC', function (err, results) {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+    return users;
+}
+
 // fix next
 // exports.delete = function(username, password) {
 //     db.connection.query('DELETE FROM users WHERE username = ? AND password = ?', [username, password], function(err, results) {

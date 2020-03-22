@@ -26,11 +26,16 @@ class Navbar extends Component {
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
+                            <li>
+                                <Link to='/users'>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
+                                </Link>
+                            </li>
                             <li onClick={this.changeList}>
                                 {this.props.currentList.list === 'global' ? (
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>USER</button>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Your Reads</button>
                                 ) : (
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>GLOBAL</button>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Global Reads</button>
                                 )}
                             </li>
                             <ArticleForm history={this.props.history}/>

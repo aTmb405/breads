@@ -4,13 +4,15 @@ import errors from './errors';
 import readings from './readings';
 import currentList from './currentList';
 import summary from './summary';
+import users from './users';
 
 const rootReducer = combineReducers({
     currentUser,
     errors,
     readings,
     currentList,
-    summary
+    summary,
+    users
 });
   
 export default rootReducer;

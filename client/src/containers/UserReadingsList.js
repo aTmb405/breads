@@ -10,7 +10,7 @@ class UserReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, removeReading, summary, fetchSummary, removeSummary  } = this.props; //currentUser
+        const { readings, removeReading, summary, fetchSummary, removeSummary, currentUser  } = this.props; //currentUser
         let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
@@ -24,6 +24,7 @@ class UserReadingsList extends Component {
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
                 removeSummary={removeSummary}
                 removeReading={removeReading.bind(this, r.user_id, r.id)}
+                isCorrectUser={currentUser === r.user_id}
             />
         ));
         return (
@@ -45,8 +46,8 @@ class UserReadingsList extends Component {
 function mapStateToProps(state) {
     return {
         readings: state.readings,
-        summary: state.summary
-        // currentUser: state.currentUser
+        summary: state.summary,
+        currentUser: state.currentUser.user.id
         
     }
 }
