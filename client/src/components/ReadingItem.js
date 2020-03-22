@@ -15,10 +15,10 @@ const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, vie
                 width='100'
                 className='timeline-image'
             /> */}
-            <p className='reading-area d-flex flex-column align-self-stretch'>{title}</p>
+            <h5 className='reading-area d-flex flex-column align-self-stretch'>{title}</h5>
             <div className='reading-area d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
-                <p>{domain}</p>
+                <p className='lead'>{domain}</p>
                 {summary === '' || summary.id != id
                     ? <button onClick={viewSummary} className='btn btn-outline-primary btn-sm m-2'>View Summary</button>
                     : <button onClick={removeSummary} className='btn btn-outline-primary btn-sm m-2'>Remove Summary</button>
@@ -30,9 +30,9 @@ const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, vie
             }
             <div className='d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
-                    <p>User: {user_id}</p>
+                    <p className='text-muted'>{user_id}</p>
                     <span className='text-muted d-flex ml-auto'>
-                        <p>Words in Article: ~{word_count}</p>
+                        <p>~{word_count} words</p>
                     </span>
                     {isCorrectUser && (
                         <button className='btn btn-outline-danger btn-sm m-2' onClick={removeReading}>

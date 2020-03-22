@@ -17,6 +17,8 @@ const Routes = props => {
                 render={props => {
                     return (
                         <Homepage
+                            removeError={removeError}
+                            errors={errors}
                             currentUser={currentUser}
                             currentList={currentList}
                             readings={readings}

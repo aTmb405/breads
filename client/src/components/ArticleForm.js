@@ -22,7 +22,7 @@ class ArticleForm extends Component {
         event.preventDefault();
         this.props.postNewReading(this.state.url);
         this.setState({ url: "" });
-        // this.props.history.push("/");
+        this.props.history.push("/");
         // this.props.history.goBack();
         // window.location.reload(false);
         // this.props.fetchReadings();
@@ -34,9 +34,9 @@ class ArticleForm extends Component {
 
         return (
                 <form onSubmit={this.handleNewUrl} className='form-inline'>
-                    {errors.message && (
+                    {/* {errors.message && (
                         <div className='alert alert-danger p-1 mb-2 small'>{errors.message}</div>
-                    )}
+                    )} */}
                     <div className='form-group mx-sm-3 mb-2'>
                         <label htmlFor='url'></label>
                         <input

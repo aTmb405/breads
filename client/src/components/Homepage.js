@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReadingsTimeline from './ReadingsTimeline';
 import UserTimeline from './UserTimeline';
 
-const Homepage = ({ currentUser, currentList, readings }) => {
+const Homepage = ({ currentUser, currentList, readings, errors, removeErrors }) => {
     if (!currentUser.isAuthenticated) {
         return (
             <div className='home-hero'>
@@ -17,6 +17,9 @@ const Homepage = ({ currentUser, currentList, readings }) => {
     }
     return (
         <div>
+            {errors.message && (
+                <div className='alert alert-danger'>{errors.message}</div>
+            )}
             {currentList.list === 'global' ? (
                 <ReadingsTimeline
                     image={currentUser.user.image}

@@ -22,7 +22,7 @@ class Navbar extends Component {
             <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
                 <div className='container-fluid'>
                     <Link className='navbar-brand' to='/'>
-                        READINGS
+                        ABREAD
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
