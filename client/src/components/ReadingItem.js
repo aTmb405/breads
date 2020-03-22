@@ -5,10 +5,8 @@ import React from 'react';
 // import DefaultImage from '../images/default-profile-image.jpg';
 
 const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, viewSummary, removeSummary, removeReading, isCorrectUser }) => { //username, image
-    console.log(summary);
-    console.log(id);
     return (
-        <li className='list-group-item'>
+        <li className='list-group-item d-flex flex-column justify-content-between'>
             {/* if list === 'global' */}
             {/* <img
                 src={image || DefaultImage} //not correct user
@@ -17,24 +15,34 @@ const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, vie
                 width='100'
                 className='timeline-image'
             /> */}
-            <div className='reading-area'>
-                    <p>{title}</p>
-                    <p>{domain}</p>
+            <p className='reading-area d-flex flex-column align-self-stretch'>{title}</p>
+            <div className='reading-area d-flex flex-column align-self-stretch'>
+                <div className='d-flex flex-row justify-content-between'>
+                <p>{domain}</p>
+                {summary === '' || summary.id != id
+                    ? <button onClick={viewSummary} className='btn btn-outline-primary btn-sm m-2'>View Summary</button>
+                    : <button onClick={removeSummary} className='btn btn-outline-primary btn-sm m-2'>Remove Summary</button>
+                }
+            </div>
+            </div>
+            {summary.id == id &&
+                <p>{summary.data}</p>
+            }
+            <div className='d-flex flex-column align-self-stretch'>
+                <div className='d-flex flex-row justify-content-between'>
                     <p>User: {user_id}</p>
-                    {summary === '' || summary.id != id
-                        ? <button onClick={viewSummary} className='btn btn-outline-primary btn-sm mb-2'>View Summary</button>
-                        : <button onClick={removeSummary} className='btn btn-outline-primary btn-sm mb-2'>Remove Summary</button>
-                    }
-                    {summary.id == id &&
-                        <p>{summary.data}</p>
-                    }
-                    <p>Words in Article: ~{word_count}</p>
+                    <span className='text-muted d-flex ml-auto'>
+                        <p>Words in Article: ~{word_count}</p>
+                    </span>
                     {isCorrectUser && (
-                        <button className='btn btn-outline-danger btn-sm' onClick={removeReading}>
+                        <button className='btn btn-outline-danger btn-sm m-2' onClick={removeReading}>
                             Delete
                         </button>
                     )}
+                
+                </div>
             </div>
+            
         </li>
     )
 }
