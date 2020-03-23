@@ -24,11 +24,14 @@ class Navbar extends Component {
                     <Link className='navbar-brand' to='/'>
                         ABREAD
                     </Link>
+                    <Link to='/users'>
+                        <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
+                    </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
                             <li>
-                                <Link to='/users'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
+                                <Link to='/subscriptions'>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Subscriptions</button>
                                 </Link>
                             </li>
                             <li onClick={this.changeList}>

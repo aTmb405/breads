@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchReadings } from '../store/actions/readings';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
+import { fetchUsers } from '../store/actions/users';
+import { postNewSubscription } from '../store/actions/subscriptions';
 import ReadingItem from '../components/ReadingItem';
 
 class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
+        this.props.fetchUsers();
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, summary, fetchSummary, removeSummary } = this.props;
+        const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props; //, users
         let readingsList = readings.map(r => (           
             <ReadingItem
                 key={r.id}
@@ -24,6 +27,9 @@ class ReadingsList extends Component {
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
                 removeSummary={removeSummary}
+                newSubscription={postNewSubscription.bind(this, r.user_id)}
+                // username={users.username}
+                // image={users.image}
             />     
         ));
         return (
@@ -45,8 +51,9 @@ class ReadingsList extends Component {
 function mapStateToProps(state) {
     return {
         readings: state.readings,
-        summary: state.summary
+        summary: state.summary,
+        // users: state.users,
     }
 }
 
-export default connect(mapStateToProps, { fetchReadings, fetchSummary, removeSummary })(ReadingsList);
+export default connect(mapStateToProps, { fetchReadings, fetchSummary, removeSummary, fetchUsers, postNewSubscription })(ReadingsList);

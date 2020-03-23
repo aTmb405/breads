@@ -19,7 +19,8 @@ let express = require('express'),
     cors = require('cors'),
     auth = require('./middleware/auth'),
     readings = require('./controllers/readings'),
-    users = require('./controllers/users');
+    users = require('./controllers/users'),
+    subscriptions = require('./controllers/subscriptions');
 
 const PORT = 8080;
 
@@ -37,12 +38,13 @@ app.use('/api/users/:id/readings',
         auth.loginRequired, auth.ensureCorrectUser,
         readingRoutes);
 
-app.get('/api/users', users.findAllUsers);
-
 // refactor
-app.get('/api/readings', readings.listAllReadings);
-app.get('/api/readings/:id', readings.listUserReadings);
+app.get('/api/users', users.findAllUsers);
+app.get('/api/readings', readings.findAllReadings);
+app.get('/api/readings/:id', readings.findUserReadings); //how to get any user id into params???
 app.get('/api/summary/:id', readings.summarizeReading);
+app.post('/api/subscribe', subscriptions.createSubscription);
+app.get('/api/subscriptions/:id', subscriptions.findUserSubscriptions);
 
 app.use(function(req, res, next) {
     let err = new Error('Not Found');

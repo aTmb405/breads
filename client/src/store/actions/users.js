@@ -8,7 +8,7 @@ export const loadUsers = users => ({
 });
 
 export const fetchUsers = () => {
-    return dispatch => { //getState
+    return dispatch => {
         return apiCall('get', '/users')
             .then(res => {
                 dispatch(loadUsers(res));

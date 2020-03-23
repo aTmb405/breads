@@ -8,3 +8,4 @@ export const REMOVE_SUMMARY = 'REMOVE_SUMMARY';
 export const GLOBAL_LIST = 'GLOBAL_LIST';
 export const USER_LIST = 'USER_LIST';
 export const LOAD_USERS = 'LOAD_USERS';
+export const LOAD_SUBSCRIPTIONS = 'LOAD_SUBSCRIPTIONS';

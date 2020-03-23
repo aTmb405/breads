@@ -6,10 +6,13 @@ import AuthForm from '../components/AuthForm';
 import UsersList from './UsersList';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
+// refactor
+import { fetchSubscriptions } from '../store/actions/subscriptions';
+import SubscriptionList from './SubscriptionList';
 
 
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser, currentList, readings, users } = props;
+    const { authUser, errors, removeError, currentUser, currentList, readings, users, subscriptions } = props;
     return (
         <Switch>
             <Route
@@ -18,11 +21,11 @@ const Routes = props => {
                 render={props => {
                     return (
                         <Homepage
-                            removeError={removeError}
                             errors={errors}
                             currentUser={currentUser}
                             currentList={currentList}
                             readings={readings}
+                            users={users}
                             {...props}
                         />
                     )
@@ -34,9 +37,9 @@ const Routes = props => {
                 render={props => {
                     return (
                         <AuthForm
+                            onAuth={authUser}
                             removeError={removeError}
                             errors={errors}
-                            onAuth={authUser}
                             buttonText='Log In'
                             heading='Welcome Back.'
                             {...props}
@@ -50,9 +53,9 @@ const Routes = props => {
                 render={props => {
                     return (
                         <AuthForm
+                            onAuth={authUser}
                             removeError={removeError}
                             errors={errors}
-                            onAuth={authUser}
                             signup
                             buttonText='Sign up'
                             heading='Join today!'
@@ -73,6 +76,16 @@ const Routes = props => {
                     )
                 }}
             />
+            {/* refactor */}
+            <Route
+                exact
+                path='/subscriptions'
+                render={props => {
+                    return (
+                        <SubscriptionList />
+                    )
+                }}
+            />
             {/* <Redirect to='/articles' /> */}
         </Switch>
     );
@@ -84,10 +97,11 @@ function mapStateToProps(state) {
     errors: state.errors,
     currentList: state.currentList,
     readings: state.readings,
-    users: state.users
+    users: state.users,
+    subscriptions: state.subscriptions
   };
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, removeError })(Routes)
+  connect(mapStateToProps, { authUser, removeError, fetchSubscriptions })(Routes)
 );

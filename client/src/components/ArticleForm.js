@@ -30,7 +30,7 @@ class ArticleForm extends Component {
 
     render() {
         const { url } = this.state;
-        const { errors } = this.props; //readings
+        // const { errors } = this.props; //readings
 
         return (
                 <form onSubmit={this.handleNewUrl} className='form-inline'>
@@ -57,7 +57,7 @@ class ArticleForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        errors: state.errors,
+        // errors: state.errors,
         readings: state.readings
     }
 }

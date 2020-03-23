@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ReadingsTimeline from './ReadingsTimeline';
 import UserReadingsTimeline from './UserReadingsTimeline';
 
-const Homepage = ({ currentUser, currentList, readings, errors, removeErrors }) => {
+const Homepage = ({ errors, currentUser, currentList, readings }) => {
     if (!currentUser.isAuthenticated) {
         return (
             <div className='home-hero'>

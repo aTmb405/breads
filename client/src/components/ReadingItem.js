@@ -4,7 +4,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // import DefaultImage from '../images/default-profile-image.jpg';
 
-const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, viewSummary, removeSummary, removeReading, isCorrectUser }) => { //username, image
+const ReadingItem = ({ id, title, domain, url, word_count, user_id, summary, viewSummary, removeSummary, removeReading, isCorrectUser, newSubscription }) => { //username, image
     return (
         <li className='list-group-item d-flex flex-column justify-content-between'>
             {/* if list === 'global' */}
@@ -30,12 +30,12 @@ const ReadingItem = ({ id, title, domain, url, user_id, word_count, summary, vie
             }
             <div className='d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
-                    <p className='text-muted'>{user_id}</p>
+                    <button onClick={newSubscription} className='btn btn-outline-danger btn-sm m-2'>{user_id}</button>
                     <span className='text-muted d-flex ml-auto'>
                         <p>~{word_count} words</p>
                     </span>
                     {isCorrectUser && (
-                        <button className='btn btn-outline-danger btn-sm m-2' onClick={removeReading}>
+                        <button onClick={removeReading} className='btn btn-outline-danger btn-sm m-2'>
                             Delete
                         </button>
                     )}

@@ -1,4 +1,5 @@
 let readings = require('../helpers/readings');
+    // Reading = require('../models/reading').Reading
 
 exports.createReading = async (req, res, next) => {
     try {
@@ -26,24 +27,24 @@ exports.summarizeReading = async (req, res, next) => {
     }
 }
 
-exports.listAllReadings = async (req, res, next) => {
+exports.findAllReadings = async (req, res, next) => {
     try {
         let allReadings = await readings.findAll();
         return res.status(200).json(allReadings);
     }
     catch (err) {
-        console.log('listAllreadings - controllers/readings');
+        console.log('findAllreadings - controllers/readings');
         return next(err);
     }
 }
 
-exports.listUserReadings = async (req, res, next) => {
+exports.findUserReadings = async (req, res, next) => {
     try {
         let userReadings = await readings.findByUserId(req.params.id);
         return res.status(200).json(userReadings);
     }
     catch (err) {
-        console.log('listUserreadings - controllers/readings');
+        console.log('findUserreadings - controllers/readings');
         return next(err);
     }
 }

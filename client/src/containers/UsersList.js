@@ -7,7 +7,6 @@ class UsersList extends Component {
     componentDidMount() {
         this.props.fetchUsers();
     }
-
     render() {
         const { users } = this.props;
         let usersList = users.map(u => (           

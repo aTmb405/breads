@@ -48,7 +48,7 @@ exports.delete = username => {
 
 exports.findAll = () => {
     let users = new Promise(function (resolve, reject) {
-        db.connection.query('SELECT * FROM users ORDER BY id DESC', function (err, results) {
+        db.connection.query('SELECT id, first_name, last_name, username, image FROM users ORDER BY id DESC', function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });
