@@ -36,8 +36,8 @@ export const fetchReadings = () => {
 
 export const fetchUserReadings = () => {
     return (dispatch, getState) => {
-        // MYSQL JOINS!!!!
-        let {currentUser} = getState(); //how to get user id into params??? - added fetchUser to ReadingList mounting
+        let {currentUser} = getState();
+        console.log(currentUser);
         const id = currentUser.user.id;
         return apiCall('get', `/readings/${id}`)
             .then(res => {
@@ -48,8 +48,6 @@ export const fetchUserReadings = () => {
             })
     }
 }
-
-// export const fetchFriendReadings
 
 export const postNewReading = url => (dispatch, getState) => {
     let { currentUser } = getState();

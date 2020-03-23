@@ -36,7 +36,8 @@ exports.summarize = url => {
 
 exports.findAll = () => {
     let readings = new Promise(function (resolve, reject) {
-        db.connection.query('SELECT * FROM readings ORDER BY id DESC', function (err, results) {
+        // FORMAT(word_count, 0)
+        db.connection.query('SELECT readings.id, title, domain, word_count, url, readings.user_id, username, image FROM readings LEFT JOIN users ON users.id = readings.user_id ORDER BY readings.id DESC', function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });
@@ -46,7 +47,7 @@ exports.findAll = () => {
 
 exports.findByUserId = (userId) => {
     let id = new Promise(function(resolve, reject) {
-        db.connection.query('SELECT * FROM readings WHERE user_id = ?', userId, function(err, results) {
+        db.connection.query('SELECT readings.id, title, domain, word_count, url, readings.user_id, username, image FROM readings LEFT JOIN users ON users.id = readings.user_id WHERE user_id = ? ORDER BY readings.id DESC', userId, function(err, results) {
             if (err) reject(err);
             return resolve(results);
         });

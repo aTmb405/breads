@@ -10,18 +10,19 @@ class SubscriptionsList extends Component {
     }
     render() {
         const { subscriptions, summary, fetchSummary, removeSummary } = this.props;
-        let subscriptionsList = subscriptions.map(u => (           
+        let subscriptionsList = subscriptions.map(s => (           
             <SubscriptionItem
-                key={u.publisher_id}
-                url={u.url}
-                word_count={u.word_count}
-                // image={readings[1].image} //not correct user
-                reading_id={u.id}
-                user_id={u.user_id}
-                title={u.title}
-                domain={u.domain}
+                key={s.id}
+                reading_id={s.id}
+                title={s.title}
+                domain={s.domain}
+                url={s.url}
+                word_count={s.word_count}
+                username={s.username}
+                image={s.image}
+                user_id={s.user_id}
                 summary={summary.summary}
-                viewSummary={fetchSummary.bind(this, u.id, u.url)}
+                viewSummary={fetchSummary.bind(this, s.id, s.url)}
                 removeSummary={removeSummary}
             />     
         ));

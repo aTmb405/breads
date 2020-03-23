@@ -9,27 +9,26 @@ import ReadingItem from '../components/ReadingItem';
 class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
-        this.props.fetchUsers();
+        // this.props.fetchUsers();
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props; //, users
+        const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props;
         let readingsList = readings.map(r => (           
             <ReadingItem
                 key={r.id}
                 id={r.id}
-                article_url={r.url}
-                word_count={r.word_count}
-                // image={readings[1].image} //not correct user
-                user_id={r.user_id}
                 title={r.title}
                 domain={r.domain}
+                url={r.url}
+                word_count={r.word_count}
+                user_id={r.user_id}
+                username={r.username}
+                image={r.image}
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
                 removeSummary={removeSummary}
                 newSubscription={postNewSubscription.bind(this, r.user_id)}
-                // username={users.username}
-                // image={users.image}
             />     
         ));
         return (
