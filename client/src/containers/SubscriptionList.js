@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSubscriptions } from '../store/actions/subscriptions';
+import { fetchSummary, removeSummary } from '../store/actions/summary';
 import SubscriptionItem from '../components/SubscriptionItem';
 
 class SubscriptionsList extends Component {
@@ -8,12 +9,20 @@ class SubscriptionsList extends Component {
         this.props.fetchSubscriptions();
     }
     render() {
-        const { subscriptions } = this.props;
+        const { subscriptions, summary, fetchSummary, removeSummary } = this.props;
         let subscriptionsList = subscriptions.map(u => (           
             <SubscriptionItem
                 key={u.publisher_id}
-                pub_id={u.publisher_id}
-                sub_id={u.subscriber_id}
+                url={u.url}
+                word_count={u.word_count}
+                // image={readings[1].image} //not correct user
+                reading_id={u.id}
+                user_id={u.user_id}
+                title={u.title}
+                domain={u.domain}
+                summary={summary.summary}
+                viewSummary={fetchSummary.bind(this, u.id, u.url)}
+                removeSummary={removeSummary}
             />     
         ));
         return (
@@ -34,8 +43,9 @@ class SubscriptionsList extends Component {
 
 function mapStateToProps(state) {
     return {
-        subscriptions: state.subscriptions
+        subscriptions: state.subscriptions,
+        summary: state.summary
     }
 }
 
-export default connect(mapStateToProps, { fetchSubscriptions })(SubscriptionsList);
+export default connect(mapStateToProps, { fetchSubscriptions, fetchSummary, removeSummary })(SubscriptionsList);

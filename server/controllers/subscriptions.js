@@ -3,20 +3,27 @@ let subscriptions = require('../helpers/subscriptions'),
 
 exports.createSubscription = async (req, res, next) => {
     try {
-        let newSubscription = new Subscription(req.body.sub_id, req.body.pub_id);
-        console.log(newSubscription);
-        let subscription = await subscriptions.create(newSubscription);
-        return res.status(200).json(subscription);
+        if (req.body.sub_id !== req.body.pub_id) {
+            let newSubscription = new Subscription(req.body.sub_id, req.body.pub_id);
+            let subscription = await subscriptions.create(newSubscription);
+            return res.status(200).json(subscription);
+        }
     }
     catch (err) {
         console.log('createSubscription - controllers/users');
-        return next(err);
+        if (err.code === 'ER_DUP_ENTRY') {
+            err.message = 'You already subscribe to them!';
+        }
+        return next({
+            status: 400,
+            message: err.message
+        });
     }
 }
 
 exports.findUserSubscriptions = async (req, res, next) => {
     try {
-        let userSubscriptions = await subscriptions.findBySubId(req.params.id);
+        let userSubscriptions = await subscriptions.findPubReadings(req.params.id);
         return res.status(200).json(userSubscriptions);
     }
     catch (err) {

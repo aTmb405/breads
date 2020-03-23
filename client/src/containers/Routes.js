@@ -12,7 +12,7 @@ import SubscriptionList from './SubscriptionList';
 
 
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser, currentList, readings, users, subscriptions } = props;
+    const { authUser, errors, removeError, currentUser, currentList, readings, users } = props;
     return (
         <Switch>
             <Route
@@ -97,8 +97,7 @@ function mapStateToProps(state) {
     errors: state.errors,
     currentList: state.currentList,
     readings: state.readings,
-    users: state.users,
-    subscriptions: state.subscriptions
+    users: state.users
   };
 }
 

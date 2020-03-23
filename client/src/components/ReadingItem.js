@@ -30,7 +30,7 @@ const ReadingItem = ({ id, title, domain, url, word_count, user_id, summary, vie
             }
             <div className='d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
-                    <button onClick={newSubscription} className='btn btn-outline-danger btn-sm m-2'>{user_id}</button>
+                    <button onClick={newSubscription} className='btn btn-outline-secondary btn-sm m-2'>{user_id}</button>
                     <span className='text-muted d-flex ml-auto'>
                         <p>~{word_count} words</p>
                     </span>
@@ -42,7 +42,6 @@ const ReadingItem = ({ id, title, domain, url, word_count, user_id, summary, vie
                 
                 </div>
             </div>
-            
         </li>
     )
 }

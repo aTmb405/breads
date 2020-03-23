@@ -51,7 +51,7 @@ class ReadingsList extends Component {
 function mapStateToProps(state) {
     return {
         readings: state.readings,
-        summary: state.summary,
+        summary: state.summary
         // users: state.users,
     }
 }
