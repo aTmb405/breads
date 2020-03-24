@@ -6,7 +6,18 @@ exports.findAllUsers = async (req, res, next) => {
         return res.status(200).json(allUsers);
     }
     catch (err) {
-        console.log('listAllUsers - controllers/users');
+        console.log('findAllUsers - controllers/users');
+        return next(err);
+    }
+}
+
+exports.findPubs = async (req, res, next) => {
+    try {
+        let pubs = await users.findBySubId(req.params.id);
+        return res.status(200).json(pubs);
+    }
+    catch (err) {
+        console.log('findPubs - controllers/users');
         return next(err);
     }
 }

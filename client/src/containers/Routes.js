@@ -8,6 +8,7 @@ import { removeError } from '../store/actions/errors';
 import SubscriptionsTimeline from '../components/SubscriptionsTimeline';
 import UserReadingsTimeline from '../components/UserReadingsTimeline';
 import UsersTimeline from '../components/UsersTimeline';
+import PubsTimeline from '../components/PubsTimeline';
 
 
 const Routes = props => {
@@ -94,7 +95,6 @@ const Routes = props => {
                     )
                 }}
             />
-            
             <Route
                 exact
                 path='/subscriptions'
@@ -107,6 +107,25 @@ const Routes = props => {
                             <SubscriptionsTimeline 
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
+                            />
+                        </div>
+                    )
+                }}
+            />
+            <Route
+                exact
+                path='/pubs'
+                render={props => {
+                    return (
+                        <div>
+                            {errors.message && (
+                                <div className='alert alert-danger'>{errors.message}</div>
+                            )}
+                            <PubsTimeline
+                                image={currentUser.user.image}
+                                username={currentUser.user.username}
+                                users={users}
+                                {...props}
                             />
                         </div>
                     )

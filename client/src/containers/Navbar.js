@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
-// import { displayGlobal, displayUser } from '../store/actions/currentList';
 import { withRouter } from 'react-router-dom';
 import ArticleForm from '../components/ArticleForm';
 
@@ -10,11 +9,6 @@ class Navbar extends Component {
     logout = e => {
         e.preventDefault();
         this.props.logout();
-    }
-
-    changeList = e => {
-        e.preventDefault();
-        this.props.currentList.list === 'global' ? this.props.displayUser() : this.props.displayGlobal()
     }
 
     render() {

@@ -56,6 +56,16 @@ exports.findAll = () => {
     return users;
 }
 
+exports.findBySubId = sub_id => {
+    let pubs = new Promise(function (resolve, reject) {
+        db.connection.query('SELECT id, first_name, last_name, username, image FROM subscriptions LEFT JOIN users ON publisher_id = users.id WHERE subscriber_id = ? ORDER BY id DESC', sub_id, function (err, results) {
+            if (err) reject(err);
+            else resolve(results);
+        });
+    });
+    return pubs;
+}
+
 // fix next
 // exports.delete = function(username, password) {
 //     db.connection.query('DELETE FROM users WHERE username = ? AND password = ?', [username, password], function(err, results) {

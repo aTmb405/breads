@@ -1,4 +1,4 @@
-export const ADD_ERROR = 'ADD_ERROR'; //formatted this way so variable stay same if there are changes
+export const ADD_ERROR = 'ADD_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const LOAD_READINGS = 'LOAD_READINGS';
@@ -7,3 +7,4 @@ export const LOAD_SUMMARY = 'LOAD_SUMMARY';
 export const REMOVE_SUMMARY = 'REMOVE_SUMMARY';
 export const LOAD_USERS = 'LOAD_USERS';
 export const LOAD_SUBSCRIPTIONS = 'LOAD_SUBSCRIPTIONS';
+export const LOAD_PUBS = 'LOAD_PUBS';

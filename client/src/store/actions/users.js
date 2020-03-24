@@ -18,3 +18,17 @@ export const fetchUsers = () => {
             });
     }
 }
+
+export const fetchPubs = () => {
+    return (dispatch, getState) => {
+        const { currentUser } = getState();
+        const id = currentUser.user.id;
+        return apiCall('get', `/users/${id}`)
+            .then(res => {
+                dispatch(loadUsers(res));
+            })
+            .catch(err => {
+                dispatch(addError(err.message));
+            });
+    }
+}

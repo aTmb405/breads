@@ -26,8 +26,7 @@ const PORT = 8080;
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
-app.use(cors()); //{origin: true, credentials: true}
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
@@ -40,8 +39,9 @@ app.use('/api/users/:id/readings',
 
 // refactor
 app.get('/api/users', users.findAllUsers);
+app.get('/api/users/:id', users.findPubs);
 app.get('/api/readings', readings.findAllReadings);
-app.get('/api/readings/:id', readings.findUserReadings); //how to get any user id into params???
+app.get('/api/readings/:id', readings.findUserReadings);
 app.get('/api/summary/:id', readings.summarizeReading);
 app.post('/api/subscribe', subscriptions.createSubscription);
 app.get('/api/subscriptions/:id', subscriptions.findUserSubscriptions);
