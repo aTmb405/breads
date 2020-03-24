@@ -35,7 +35,11 @@ class SubscriptionsList extends Component {
                         </div>
                     </div>
                 ) : (
-                    <h2>You don't have any subscriptions!</h2>
+                    <div className="d-flex justify-content-center">
+                        <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
                 )}
             </div>
         )

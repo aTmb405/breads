@@ -36,7 +36,6 @@ const ReadingItem = ({ id, title, domain, url, word_count, username, image, user
                             Delete
                         </button>
                     )}
-                
                 </div>
             </div>
         </li>

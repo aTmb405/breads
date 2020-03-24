@@ -10,7 +10,7 @@ class UserReadingsList extends Component {
     }
 // clear reading state whenever logged out or failed login
     render() {
-        const { readings, removeReading, summary, fetchSummary, removeSummary, currentUser  } = this.props;
+        const { readings, removeReading, summary, fetchSummary, removeSummary, currentUser } = this.props;
         let userReadingsList = readings.map(r => (
             <ReadingItem
                 key={r.id}
@@ -38,7 +38,11 @@ class UserReadingsList extends Component {
                         </div>
                     </div>
                 ) : (
-                    <h2>You haven't read anything... Yet!!</h2>
+                    <div className="d-flex justify-content-center">
+                        <div className="spinner-grow text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
                 )}
             </div>
         )
@@ -50,7 +54,6 @@ function mapStateToProps(state) {
         readings: state.readings,
         summary: state.summary,
         currentUser: state.currentUser.user.id
-        
     }
 }
 

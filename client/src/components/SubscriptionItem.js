@@ -32,7 +32,6 @@ const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username
                             Delete
                         </button>
                     )}
-                
                 </div>
             </div>
         </li>

@@ -8,7 +8,6 @@ const UserReadingsTimeline = props => {
             <UserAside
                 image={props.image}
                 username={props.username}
-                // list={props.list}
                 readings={props.readings}
             />
             <UserReadingsList />

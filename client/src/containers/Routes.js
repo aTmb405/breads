@@ -3,13 +3,11 @@ import { Switch, Route, withRouter } from 'react-router-dom'; //Redirect
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
-import UsersList from './UsersList';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
-// refactor
-import { fetchSubscriptions } from '../store/actions/subscriptions';
-import SubscriptionList from './SubscriptionList';
-import UserReadingsTimeline from '../components/UserReadingsTimeline'
+import SubscriptionsTimeline from '../components/SubscriptionsTimeline';
+import UserReadingsTimeline from '../components/UserReadingsTimeline';
+import UsersTimeline from '../components/UsersTimeline';
 
 
 const Routes = props => {
@@ -69,24 +67,30 @@ const Routes = props => {
                 path='/users'
                 render={props => {
                     return (
-                        <UsersList
+                        <UsersTimeline
+                            image={currentUser.user.image}
+                            username={currentUser.user.username}
                             users={users}
                             {...props}
                         />
                     )
                 }}
             />
-            {/* refactor */}
             <Route 
                 exact
                 path='/readings'
                 render={props => {
                     return (
-                        <UserReadingsTimeline
+                        <div>
+                            {errors.message && (
+                                <div className='alert alert-danger'>{errors.message}</div>
+                            )}
+                            <UserReadingsTimeline
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
                                 readings={readings}
-                        />
+                            />
+                        </div> 
                     )
                 }}
             />
@@ -96,11 +100,18 @@ const Routes = props => {
                 path='/subscriptions'
                 render={props => {
                     return (
-                        <SubscriptionList />
+                        <div>
+                            {errors.message && (
+                                <div className='alert alert-danger'>{errors.message}</div>
+                            )}
+                            <SubscriptionsTimeline 
+                                image={currentUser.user.image}
+                                username={currentUser.user.username}
+                            />
+                        </div>
                     )
                 }}
             />
-            {/* <Redirect to='/articles' /> */}
         </Switch>
     );
 }
@@ -115,5 +126,5 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, removeError, fetchSubscriptions })(Routes)
+  connect(mapStateToProps, { authUser, removeError })(Routes)
 );
