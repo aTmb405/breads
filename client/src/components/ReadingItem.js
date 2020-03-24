@@ -11,7 +11,7 @@ const ReadingItem = ({ id, title, domain, url, word_count, username, image, user
             <div className='reading-area d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
                 <p className='lead'>{domain}</p>
-                <p className='text-muted ml-auto'>~{word_count} words</p>
+                <p className='text-muted ml-auto'>~{Number(word_count).toLocaleString()} words</p>
             </div>
             </div>
             {summary.id == id &&
