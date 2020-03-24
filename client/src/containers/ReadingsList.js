@@ -9,7 +9,6 @@ import ReadingItem from '../components/ReadingItem';
 class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
-        // this.props.fetchUsers();
     }
 // clear reading state whenever logged out or failed login
     render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
-import { displayGlobal, displayUser } from '../store/actions/currentList';
+// import { displayGlobal, displayUser } from '../store/actions/currentList';
 import { withRouter } from 'react-router-dom';
 import ArticleForm from '../components/ArticleForm';
 
@@ -30,16 +30,19 @@ class Navbar extends Component {
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
                             <li>
+                                <Link to='/'>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Global Reads</button>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to='/readings'>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Your Reads</button>
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to='/subscriptions'>
                                     <button className='btn btn-outline-primary btn-sm mb-2'>Subscriptions</button>
                                 </Link>
-                            </li>
-                            <li onClick={this.changeList}>
-                                {this.props.currentList.list === 'global' ? (
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Your Reads</button>
-                                ) : (
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Global Reads</button>
-                                )}
                             </li>
                             <ArticleForm history={this.props.history}/>
                             <li>
@@ -73,4 +76,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter(connect(mapStateToProps, { logout, displayGlobal, displayUser })(Navbar));
+export default withRouter(connect(mapStateToProps, { logout })(Navbar));

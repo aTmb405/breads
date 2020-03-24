@@ -37,7 +37,6 @@ export const fetchReadings = () => {
 export const fetchUserReadings = () => {
     return (dispatch, getState) => {
         let {currentUser} = getState();
-        console.log(currentUser);
         const id = currentUser.user.id;
         return apiCall('get', `/readings/${id}`)
             .then(res => {

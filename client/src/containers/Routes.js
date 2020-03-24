@@ -9,10 +9,11 @@ import { removeError } from '../store/actions/errors';
 // refactor
 import { fetchSubscriptions } from '../store/actions/subscriptions';
 import SubscriptionList from './SubscriptionList';
+import UserReadingsTimeline from '../components/UserReadingsTimeline'
 
 
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser, currentList, readings, users } = props;
+    const { authUser, errors, removeError, currentUser, readings, users } = props;
     return (
         <Switch>
             <Route
@@ -23,7 +24,6 @@ const Routes = props => {
                         <Homepage
                             errors={errors}
                             currentUser={currentUser}
-                            currentList={currentList}
                             readings={readings}
                             users={users}
                             {...props}
@@ -77,6 +77,20 @@ const Routes = props => {
                 }}
             />
             {/* refactor */}
+            <Route 
+                exact
+                path='/readings'
+                render={props => {
+                    return (
+                        <UserReadingsTimeline
+                                image={currentUser.user.image}
+                                username={currentUser.user.username}
+                                readings={readings}
+                        />
+                    )
+                }}
+            />
+            
             <Route
                 exact
                 path='/subscriptions'
@@ -95,7 +109,6 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
-    currentList: state.currentList,
     readings: state.readings,
     users: state.users
   };
