@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 import { withRouter } from 'react-router-dom';
-import ArticleForm from '../components/ArticleForm';
+import ArticleForm from './ArticleForm';
 
 class Navbar extends Component {
     logout = e => {
@@ -16,7 +16,7 @@ class Navbar extends Component {
             <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
                 <div className='container-fluid'>
                     <Link className='navbar-brand' to='/'>
-                        ABREAD
+                        BREAD
                     </Link>
                     <Link to='/users'>
                         <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>

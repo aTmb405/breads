@@ -27,7 +27,7 @@ class SubscriptionsList extends Component {
             />     
         ));
         return (
-            <div className='row col-sm-8'>
+            <div className='row col-sm-8 offset-md-2'>
                 {this.props.subscriptions.length ? (
                     <div className='offset-1 col-sm-10'>
                         <div className='list-group' id='subscriptions'>

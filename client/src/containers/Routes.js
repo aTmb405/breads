@@ -71,6 +71,7 @@ const Routes = props => {
                         <UsersTimeline
                             image={currentUser.user.image}
                             username={currentUser.user.username}
+                            readings={readings}
                             users={users}
                             {...props}
                         />

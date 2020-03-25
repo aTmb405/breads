@@ -20,7 +20,7 @@ class UsersList extends Component {
             />     
         ));
         return (
-            <div className='row col-sm-8'>
+            <div className='row col-sm-8 offset-md-2'>
                 {this.props.users.length ? (
                     <div class="card-columns">
                         {usersList}

@@ -73,3 +73,7 @@ exports.findBySubId = sub_id => {
 //         else return this.values;
 //     });
 // }
+
+// SELECT username, MATCH (first_name, last_name, username) AGAINST ('User') as score FROM users WHERE MATCH (first_name, last_name, username) AGAINST ('User') > 0 ORDER BY score DESC;
+// SELECT username, MATCH (first_name, last_name, username) AGAINST ('user') as score FROM users;
+// SELECT username FROM users WHERE MATCH (first_name, last_name, username) AGAINST ('First');
