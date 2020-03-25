@@ -23,6 +23,7 @@ const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username
                         width='100'
                         className='timeline-image'
                     />
+                    <p className='text-muted'>{username}</p>
                     {summary === '' || summary.id != reading_id
                         ? <button onClick={viewSummary} className='btn btn-outline-primary btn-sm m-2 d-flex ml-auto'>View Summary</button>
                         : <button onClick={removeSummary} className='btn btn-outline-primary btn-sm m-2 d-flex ml-auto'>Remove Summary</button>

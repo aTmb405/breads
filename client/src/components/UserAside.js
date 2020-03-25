@@ -9,7 +9,7 @@ const UserAside = ({ image, username, readings }) => {
         // console.log(list);
     // let totalWords = 0;
     // readings.forEach(r => {
-    //     totalWords += (r.word_count/60000);
+    //     totalWords += (r.word_count/100000);
     // });
     // totalArticles = <p className='card-text'>Articles read: <strong>{readings.length}</strong></p>;
     // totalBooks = <p className='card-text'>Book Equivalents: {totalWords}</p>;
