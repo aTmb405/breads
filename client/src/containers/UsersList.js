@@ -22,11 +22,14 @@ class UsersList extends Component {
         return (
             <div className='row col-sm-8'>
                 {this.props.users.length ? (
-                    <div className='offset-1 col-sm-10'>
-                        <div className='list-group' id='users'>
-                            {usersList}
-                        </div>
+                    <div class="card-columns">
+                        {usersList}
                     </div>
+                    // <div className='offset-1 col-sm-10'>
+                    //     <div className='list-group' id='users'>
+                            
+                    //     </div>
+                    // </div>
                 ) : (
                     <div className="d-flex justify-content-center">
                         <div className="spinner-grow text-primary" role="status">
