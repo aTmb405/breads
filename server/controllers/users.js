@@ -21,3 +21,14 @@ exports.findPubs = async (req, res, next) => {
         return next(err);
     }
 }
+
+exports.search = async (req, res, next) => {
+    try {
+        let results = await users.findBySearch(req.params.search);
+        return res.status(200).json(results);
+    }
+    catch (err) {
+        console.log('search - controllers/users');
+        return next(err);
+    }
+}

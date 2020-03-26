@@ -4,11 +4,12 @@ import { fetchUsers } from '../store/actions/users';
 import UserItem from '../components/UserItem';
 
 class UsersList extends Component {
-    componentDidMount() {
-        this.props.fetchUsers();
-    }
+    // componentDidMount() {
+    //     this.props.fetchUsers();
+    // }
     render() {
         const { users } = this.props;
+        console.log(users);
         let usersList = users.map(u => (           
             <UserItem
                 key={u.id}
@@ -22,7 +23,7 @@ class UsersList extends Component {
         return (
             <div className='row col-sm-8 offset-md-2'>
                 {this.props.users.length ? (
-                    <div class="card-columns">
+                    <div className='card-columns'>
                         {usersList}
                     </div>
                     // <div className='offset-1 col-sm-10'>
@@ -31,9 +32,9 @@ class UsersList extends Component {
                     //     </div>
                     // </div>
                 ) : (
-                    <div className="d-flex justify-content-center">
-                        <div className="spinner-grow text-primary" role="status">
-                            <span className="sr-only">Loading...</span>
+                    <div className='d-flex justify-content-center'>
+                        <div className='spinner-grow text-primary' role='status'>
+                            <span className='sr-only'>Loading...</span>
                         </div>
                     </div>
                 )}

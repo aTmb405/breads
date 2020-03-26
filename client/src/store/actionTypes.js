@@ -6,5 +6,6 @@ export const REMOVE_READING = 'REMOVE_READING';
 export const LOAD_SUMMARY = 'LOAD_SUMMARY';
 export const REMOVE_SUMMARY = 'REMOVE_SUMMARY';
 export const LOAD_USERS = 'LOAD_USERS';
+export const FILTER_USERS = 'FILTER_USERS';
 export const LOAD_SUBSCRIPTIONS = 'LOAD_SUBSCRIPTIONS';
 export const LOAD_PUBS = 'LOAD_PUBS';

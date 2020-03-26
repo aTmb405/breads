@@ -40,6 +40,7 @@ app.use('/api/users/:id/readings',
 // refactor
 app.get('/api/users', users.findAllUsers);
 app.get('/api/users/:id', users.findPubs);
+app.get('/api/search/:search', users.search);
 app.get('/api/readings', readings.findAllReadings);
 app.get('/api/readings/:id', readings.findUserReadings);
 app.get('/api/summary/:id', readings.summarizeReading);

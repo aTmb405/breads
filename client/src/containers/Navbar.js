@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 import { withRouter } from 'react-router-dom';
 import ArticleForm from './ArticleForm';
+import SearchForm from './SearchForm';
 
 class Navbar extends Component {
+    
     logout = e => {
         e.preventDefault();
         this.props.logout();
@@ -18,11 +20,14 @@ class Navbar extends Component {
                     <Link className='navbar-brand' to='/'>
                         BREAD
                     </Link>
-                    <Link to='/users'>
-                        <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
-                    </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
+                            {/* <li>
+                                <Link to='/users'>
+                                    <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
+                                </Link>
+                            </li> */}
+                            <SearchForm history={this.props.history}/>
                             <li>
                                 <Link to='/'>
                                     <button className='btn btn-outline-primary btn-sm mb-2'>Global Reads</button>

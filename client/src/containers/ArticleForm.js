@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postNewReading, fetchReadings } from '../store/actions/readings';
 
@@ -21,8 +22,8 @@ class ArticleForm extends Component {
     handleNewUrl = (event) => {
         event.preventDefault();
         this.props.postNewReading(this.state.url);
-        this.setState({ url: "" });
-        this.props.history.push("/");
+        this.setState({ url: '' });
+        this.props.history.push('/');
         // this.props.history.goBack();
         // window.location.reload(false);
         // this.props.fetchReadings();

@@ -68,13 +68,19 @@ const Routes = props => {
                 path='/users'
                 render={props => {
                     return (
-                        <UsersTimeline
-                            image={currentUser.user.image}
-                            username={currentUser.user.username}
-                            readings={readings}
-                            users={users}
-                            {...props}
-                        />
+                        <div>
+                            {errors.message && (
+                                <div className='alert alert-danger'>{errors.message}</div>
+                            )}
+                            <UsersTimeline
+                                image={currentUser.user.image}
+                                username={currentUser.user.username}
+                                readings={readings}
+                                users={users}
+                                {...props}
+                            />
+                        </div>
+                        
                     )
                 }}
             />
