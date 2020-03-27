@@ -20,11 +20,16 @@ reading = ''
 title = ''
 # author = ''
 domain = ''
-response = requests.get(f'{BASE_URL}')
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+# response = requests.get(f'{BASE_URL}')
+response = requests.get(BASE_URL, headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 def get_reading():
-    paragraphs = soup.find_all('p')
+    try:
+        paragraphs = soup.find_all('p')
+    except AttributeError:
+        paragraphs = 'None'
     all_words = [tag.get_text().strip() for tag in paragraphs]
     # Filter out sentences that contain newline characters '\n' or don't contain periods.
     sentence_list = [sentence for sentence in all_words if not '\n' in sentence]
@@ -37,7 +42,10 @@ def get_reading():
 def get_title():
     title_element = soup.find('h1')
     global title
-    title = title_element.get_text()
+    try:
+        title = title_element.get_text()
+    except AttributeError:
+        title = 'None'
     # print(title)
 
 def get_domain():

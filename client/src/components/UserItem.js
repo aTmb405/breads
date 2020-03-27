@@ -11,11 +11,10 @@ const UserItem = ({ id, first, last, username, image }) => {
                 className='img-thumbnail'
             />
             <div className='card-body'>
-                <h5 className='card-title'>{username}</h5>
-                {first} {last}
                 <Link to={`/${id}`}>
-                    <p>{username}</p>
+                    <h5 className='card-title'>{username}</h5>
                 </Link>
+                {first} {last}
                 <Link to={`/${id}/pubs`}>
                     <p>Subscriptions</p>
                 </Link>

@@ -12,7 +12,9 @@ BASE_URL = sys.argv[1]
 # BASE_URL = 'https://www.artofmanliness.com/articles/sunday-firesides-build-your-life-upon-multiple-pillars-of-support/'
 reading = ''
 summary = ''
-response = requests.get(f'{BASE_URL}')
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
+# response = requests.get(f'{BASE_URL}')
+response = requests.get(BASE_URL, headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 
 def get_reading():
