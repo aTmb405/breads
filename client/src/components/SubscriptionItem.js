@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
 const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username, image, user_id, summary, viewSummary, removeSummary, removeReading, isCorrectUser }) => {
@@ -11,9 +12,6 @@ const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username
                     <p className='text-muted ml-auto'>~{Number(word_count).toLocaleString()} words</p>
                 </div>
             </div>
-            {summary.id == reading_id &&
-                <p>{summary.data}</p>
-            }
             <div className='d-flex flex-column align-self-stretch'>
                 <div className='d-flex flex-row justify-content-between'>
                     <img
@@ -23,17 +21,22 @@ const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username
                         width='100'
                         className='timeline-image'
                     />
-                    <p className='text-muted'>{username}</p>
+                    <Link to={`/${user_id}`}>
+                        <p className='btn text-primary m-2'><small>{username}</small></p>
+                    </Link>
                     {summary === '' || summary.id != reading_id
-                        ? <button onClick={viewSummary} className='btn btn-outline-primary btn-sm m-2 d-flex ml-auto'>View Summary</button>
-                        : <button onClick={removeSummary} className='btn btn-outline-primary btn-sm m-2 d-flex ml-auto'>Remove Summary</button>
+                        ? <p onClick={viewSummary} className='btn text-muted m-2 ml-auto'><small>View Summary</small></p>
+                        : <p onClick={removeSummary} className='btn text-muted m-2 ml-auto'><small>Remove Summary</small></p>
                     }
                     {isCorrectUser && (
-                        <button onClick={removeReading} className='btn btn-outline-danger btn-sm m-2'>
-                            Delete
-                        </button>
+                        <p onClick={removeReading} className='btn text-danger m-2'>
+                            <small>Delete</small>
+                        </p>
                     )}
                 </div>
+                {summary.id == reading_id &&
+                    <p>{summary.data}</p>
+                }
             </div>
         </li>
     )
