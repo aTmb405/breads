@@ -10,6 +10,11 @@ class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.readings[0] !== prevProps.readings[0]) {
+            this.props.fetchReadings();
+        }
+    }
 // clear reading state whenever logged out or failed login
     render() {
         const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props;

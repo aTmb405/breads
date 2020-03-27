@@ -23,7 +23,7 @@ class ArticleForm extends Component {
         event.preventDefault();
         this.props.postNewReading(this.state.url);
         this.setState({ url: '' });
-        this.props.history.push('/global');
+        this.props.history.push('/');
         // this.props.history.goBack();
         // window.location.reload(false);
         // this.props.fetchReadings();

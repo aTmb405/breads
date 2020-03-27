@@ -1,10 +1,29 @@
 import React from 'react';
 // import { connectAdvanced } from 'react-redux';
 // import Moment from 'react-moment';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
 const ReadingItem = ({ id, title, domain, url, word_count, username, image, user_id, summary, viewSummary, removeSummary, removeReading, isCorrectUser, newSubscription }) => {
+    // const handleMouseEnter = () => {
+    //     return (
+    //         <div>
+    //             <Link to={`/${id}`}>
+    //                 <p>{username}</p>
+    //             </Link>
+    //             <Link to={`/${id}/pubs`}>
+    //                 <p>Subscriptions</p>
+    //             </Link>
+    //         </div>
+    //     )
+    // }
+    // componentDidMount() {
+    //     $('[data-toggle="tooltip"]').tooltip();  
+    // }
+    // componentDidUpdate() {
+    //     $('[data-toggle="tooltip"]').tooltip();
+    // }
+    
     return (
         <li className='list-group-item d-flex flex-column justify-content-between'>
             <h5 className='reading-area d-flex flex-column align-self-stretch'>{title}</h5>
@@ -25,7 +44,11 @@ const ReadingItem = ({ id, title, domain, url, word_count, username, image, user
                         height='100'
                         width='100'
                         onClick={newSubscription}
+                        // onMouseEnter={handleMouseEnter}
                         className='timeline-image'
+                        // data-toggle='tooltip'
+                        // data-placement='top'
+                        // title='Tooltip on top'
                     />
                     <p className='text-muted'>{username}</p>
                     {summary === '' || summary.id != id
