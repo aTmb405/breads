@@ -20,6 +20,7 @@ const Homepage = ({ errors, currentUser, readings }) => {
                 <div className='alert alert-danger'>{errors.message}</div>
             )}
             <ReadingsTimeline
+                id={currentUser.user.id}
                 image={currentUser.user.image}
                 username={currentUser.user.username}
                 readings={readings}

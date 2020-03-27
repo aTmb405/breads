@@ -5,7 +5,12 @@ import UserItem from '../components/UserItem';
 
 class PubsList extends Component {
     componentDidMount() {
-        this.props.fetchPubs();
+        this.props.fetchPubs(this.props.match.params.id);
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.props.fetchPubs(this.props.match.params.id);
+        }
     }
     render() {
         const { users } = this.props;

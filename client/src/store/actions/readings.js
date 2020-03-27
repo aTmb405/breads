@@ -34,11 +34,11 @@ export const fetchReadings = () => {
     }
 }
 
-export const fetchUserReadings = () => {
+export const fetchUserReadings = userId => {
     return (dispatch, getState) => {
-        let {currentUser} = getState();
-        const id = currentUser.user.id;
-        return apiCall('get', `/readings/${id}`)
+        // let {currentUser} = getState();
+        // const id = currentUser.user.id;
+        return apiCall('get', `/readings/${userId}`)
             .then(res => {
                 dispatch(loadReadings(res));
             })

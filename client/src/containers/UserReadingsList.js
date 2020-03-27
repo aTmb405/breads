@@ -6,7 +6,12 @@ import ReadingItem from '../components/ReadingItem';
 
 class UserReadingsList extends Component {
     componentDidMount() {
-        this.props.fetchUserReadings();
+        this.props.fetchUserReadings(this.props.match.params.id);
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            this.props.fetchUserReadings(this.props.match.params.id);
+        }
     }
 // clear reading state whenever logged out or failed login
     render() {

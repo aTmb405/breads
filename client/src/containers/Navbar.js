@@ -22,11 +22,6 @@ class Navbar extends Component {
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>
-                            {/* <li>
-                                <Link to='/users'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Find Friends</button>
-                                </Link>
-                            </li> */}
                             <SearchForm history={this.props.history}/>
                             <li>
                                 <Link to='/'>
@@ -34,7 +29,7 @@ class Navbar extends Component {
                                 </Link>
                             </li>
                             <li>
-                                <Link to='/readings'>
+                                <Link to={`/${this.props.currentUser.user.id}`}>
                                     <button className='btn btn-outline-primary btn-sm mb-2'>Your Reads</button>
                                 </Link>
                             </li>

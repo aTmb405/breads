@@ -17,7 +17,7 @@ const Routes = props => {
         <Switch>
             <Route
                 exact
-                path="/"
+                path='/'
                 render={props => {
                     return (
                         <Homepage
@@ -73,6 +73,7 @@ const Routes = props => {
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
                             <UsersTimeline
+                                id={currentUser.user.id}
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
                                 readings={readings}
@@ -81,24 +82,6 @@ const Routes = props => {
                             />
                         </div>
                         
-                    )
-                }}
-            />
-            <Route 
-                exact
-                path='/readings'
-                render={props => {
-                    return (
-                        <div>
-                            {errors.message && (
-                                <div className='alert alert-danger'>{errors.message}</div>
-                            )}
-                            <UserReadingsTimeline
-                                image={currentUser.user.image}
-                                username={currentUser.user.username}
-                                readings={readings}
-                            />
-                        </div> 
                     )
                 }}
             />
@@ -112,6 +95,7 @@ const Routes = props => {
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
                             <SubscriptionsTimeline 
+                                id={currentUser.user.id}
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
                             />
@@ -121,7 +105,27 @@ const Routes = props => {
             />
             <Route
                 exact
-                path='/pubs'
+                path='/:id'
+                render={props => {
+                    return (
+                        <div>
+                            {errors.message && (
+                                <div className='alert alert-danger'>{errors.message}</div>
+                            )}
+                            <UserReadingsTimeline
+                                id={currentUser.user.id}
+                                image={currentUser.user.image}
+                                username={currentUser.user.username}
+                                users={users}
+                                {...props}
+                            />
+                        </div>
+                    )
+                }}
+            />
+            <Route
+                exact
+                path='/:id/pubs'
                 render={props => {
                     return (
                         <div>
@@ -129,6 +133,7 @@ const Routes = props => {
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
                             <PubsTimeline
+                                id={currentUser.user.id}
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
                                 users={users}

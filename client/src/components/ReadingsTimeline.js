@@ -6,6 +6,7 @@ const ReadingsTimeline = props => {
     return (
         <div className='row'>
             <UserAside
+                id={props.id}
                 image={props.image}
                 username={props.username}
                 readings={props.readings}

@@ -30,11 +30,9 @@ export const fetchUsers = () => {
     }
 }
 
-export const fetchPubs = () => {
-    return (dispatch, getState) => {
-        const { currentUser } = getState();
-        const id = currentUser.user.id;
-        return apiCall('get', `/users/${id}`)
+export const fetchPubs = user_id => {
+    return dispatch => {
+        return apiCall('get', `/users/${user_id}`)
             .then(res => {
                 dispatch(loadUsers(res));
             })

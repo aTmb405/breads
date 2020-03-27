@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
-const UserAside = ({ image, username, readings }) => {
+const UserAside = ({ id, image, username, readings }) => {
     let totalArticles,
         totalBooks;
 
@@ -27,7 +27,7 @@ const UserAside = ({ image, username, readings }) => {
                 />
                 <div className='card-body'>
                     <h5 className='card-title'>{username}</h5>
-                    <Link to='/pubs'>
+                    <Link to={`/${id}/pubs`}>
                         <p>Subscriptions</p>
                     </Link>
                     {totalArticles}

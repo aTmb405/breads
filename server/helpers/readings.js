@@ -45,7 +45,7 @@ exports.findAll = () => {
     return readings;
 }
 
-exports.findByUserId = (userId) => {
+exports.findByUserId = userId => {
     let id = new Promise(function(resolve, reject) {
         db.connection.query('SELECT readings.id, title, domain, word_count, url, readings.user_id, username, image FROM readings LEFT JOIN users ON users.id = readings.user_id WHERE user_id = ? ORDER BY readings.id DESC', userId, function(err, results) {
             if (err) reject(err);
@@ -54,6 +54,16 @@ exports.findByUserId = (userId) => {
     });
     return id;
 }
+
+// exports.findByUsername = username => {
+//     let id = new Promise(function(resolve, reject) {
+//         db.connection.query('SELECT readings.id, title, domain, word_count, url, readings.user_id, username, image FROM readings LEFT JOIN users ON users.id = readings.user_id WHERE user_id = ? ORDER BY readings.id DESC', userId, function(err, results) {
+//             if (err) reject(err);
+//             return resolve(results);
+//         });
+//     });
+//     return id;
+// }
 
 exports.delete = id => {
     let user = new Promise((resolve, reject) => {

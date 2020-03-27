@@ -5,11 +5,11 @@ import UserItem from '../components/UserItem';
 
 class UsersList extends Component {
     // componentDidMount() {
-    //     this.props.fetchUsers();
+    //     const { match: { params } } = this.props;
+    //     console.log(params);
     // }
     render() {
         const { users } = this.props;
-        console.log(users);
         let usersList = users.map(u => (           
             <UserItem
                 key={u.id}
