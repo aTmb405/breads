@@ -8,7 +8,7 @@ exports.create = async (user) => {
     
     user.password = hash;
     let newUser = new Promise((resolve, reject) => {
-        db.connection.query('INSERT INTO users set ?', user, function (err, results) {
+        db.connection.query('INSERT INTO users SET ?', user, function (err, results) {
             if (err) reject(err);
             else resolve(results);
         });

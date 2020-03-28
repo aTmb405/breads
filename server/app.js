@@ -46,6 +46,7 @@ app.get('/api/readings/:id', readings.findUserReadings);
 app.get('/api/summary/:id', readings.summarizeReading);
 app.post('/api/subscribe', subscriptions.createSubscription);
 app.get('/api/subscriptions/:id', subscriptions.findUserSubscriptions);
+app.delete('/api/users/:sub_id/subscriptions/:pub_id', subscriptions.deleteSubscription);
 
 app.use(function(req, res, next) {
     let err = new Error('Not Found');

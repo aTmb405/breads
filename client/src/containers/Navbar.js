@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 import { withRouter } from 'react-router-dom';
@@ -25,19 +25,25 @@ class Navbar extends Component {
                         <ul className='nav navbar-nav navbar-right'>
                             <SearchForm history={this.props.history}/>
                             <li>
-                                <Link to='/'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Global Reads</button>
-                                </Link>
+                                <NavLink exact to='/' activeClassName='bg-primary text-white' className='btn btn-outline-primary btn-sm mb-2'>
+                                    {/* <button className='btn btn-outline-primary btn-sm mb-2'> */}
+                                        Global Reads
+                                    {/* </button> */}
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to={`/${this.props.currentUser.user.id}`}>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Your Reads</button>
-                                </Link>
+                                <NavLink exact to={`/${this.props.currentUser.user.id}`} activeClassName='bg-primary text-white' className='btn btn-outline-primary btn-sm mb-2'>
+                                    {/* <button className='btn btn-outline-primary btn-sm mb-2'> */}
+                                        Your Reads
+                                    {/* </button> */}
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to='/subscriptions'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Subscriptions</button>
-                                </Link>
+                                <NavLink exact to='/subscriptions' activeClassName='bg-primary text-white' className='btn btn-outline-primary btn-sm mb-2'>
+                                    {/* <button className='btn btn-outline-primary btn-sm mb-2'> */}
+                                        Subscriptions
+                                    {/* </button> */}
+                                </NavLink>
                             </li>
                             <ArticleForm history={this.props.history}/>
                             <li>
@@ -47,14 +53,18 @@ class Navbar extends Component {
                     ) : (
                         <ul className='nav navbar-nav navbar-right'>
                             <li>
-                                <Link to='/signup'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Sign up</button>
-                                </Link>
+                                <NavLink exact to='/signup' activeClassName='bg-primary text-white' className='btn btn-outline-primary btn-sm mb-2'>
+                                    {/* <button className='btn btn-outline-primary btn-sm mb-2'> */}
+                                        Sign up
+                                    {/* </button> */}
+                                </NavLink>
                             </li>
                             <li>
-                                <Link to='/signin'>
-                                    <button className='btn btn-outline-primary btn-sm mb-2'>Log in</button>
-                                </Link>
+                                <NavLink exact to='/signin' activeClassName='bg-primary text-white' className='btn btn-outline-primary btn-sm mb-2'>
+                                    {/* <button className='btn btn-outline-primary btn-sm mb-2'> */}
+                                        Log in
+                                    {/* </button> */}
+                                </NavLink>
                             </li>
                         </ul>
                     )}

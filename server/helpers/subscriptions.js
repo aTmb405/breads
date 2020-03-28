@@ -33,7 +33,7 @@ exports.findBySubId = sub_id => {
 
 exports.delete = (sub_id, pub_id) => {
     let subscription = new Promise((resolve, reject) => {
-        db.connection.query('DELETE FROM subscriptions WHERE SET ?', [sub_id, pub_id], function(err, results) {
+        db.connection.query('DELETE FROM subscriptions WHERE subscriber_id = ? AND publisher_id = ?', [sub_id, pub_id], function(err, results) {
             if (err) reject(err);
             else resolve(results);
         });

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
-const UserItem = ({ id, first, last, username, image }) => {
+const UserItem = ({ id, first, last, username, image, removeSubscription, pubs }) => {
     return (
         <div className='card'>
             <img
@@ -18,6 +18,9 @@ const UserItem = ({ id, first, last, username, image }) => {
                 <Link to={`/${id}/pubs`}>
                     <p>Subscriptions</p>
                 </Link>
+                {pubs === 'yes' && (
+                    <small onClick={removeSubscription} className='text-danger'>Unsubscribe</small>
+                )}
             </div>
         </div>
     )

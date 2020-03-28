@@ -31,3 +31,14 @@ exports.findUserSubscriptions = async (req, res, next) => {
         return next(err);
     }
 }
+
+exports.deleteSubscription = async (req, res, next) => {
+    try {
+        let deletedSubscription = await subscriptions.delete(Number(req.params.sub_id), Number(req.params.pub_id));
+        return res.status(200).json(deletedSubscription);
+    }
+    catch (err) {
+        console.log('deleteSubscription - controllers/subscriptions');
+        return next(err);
+    }
+}

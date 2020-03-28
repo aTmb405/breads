@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPubs } from '../store/actions/users';
+import { removeSubscription } from '../store/actions/subscriptions';
 import UserItem from '../components/UserItem';
 
 class PubsList extends Component {
@@ -13,7 +14,7 @@ class PubsList extends Component {
         }
     }
     render() {
-        const { users } = this.props;
+        const { users, removeSubscription, currentUser } = this.props;
         let pubsList = users.map(p => (           
             <UserItem
                 key={p.id}
@@ -22,6 +23,8 @@ class PubsList extends Component {
                 last={p.last_name}
                 username={p.username}
                 image={p.image}
+                removeSubscription={removeSubscription.bind(this, currentUser, p.id)}
+                pubs='yes'
             />     
         ));
         return (
@@ -44,8 +47,9 @@ class PubsList extends Component {
 
 function mapStateToProps(state) {
     return {
-        users: state.users
+        users: state.users,
+        currentUser: state.currentUser.user.id
     }
 }
 
-export default connect(mapStateToProps, { fetchPubs })(PubsList);
+export default connect(mapStateToProps, { fetchPubs, removeSubscription })(PubsList);

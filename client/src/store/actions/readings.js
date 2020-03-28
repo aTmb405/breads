@@ -14,11 +14,11 @@ export const removeReadings = id => ({
 
 export const removeReading = (user_id, reading_id) => {
     return dispatch => {
-      return apiCall('delete', `/users/${user_id}/readings/${reading_id}`)
-        .then(() => dispatch(removeReadings(reading_id)))
-        .catch(err => {
-          dispatch(addError(err.message));
-        });
+        return apiCall('delete', `/users/${user_id}/readings/${reading_id}`)
+            .then(() => dispatch(removeReadings(reading_id)))
+            .catch(err => {
+                dispatch(addError(err.message));
+            });
     };
 };
 
