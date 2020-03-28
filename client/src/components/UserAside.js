@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
 const UserAside = ({ id, image, username, readings }) => {
@@ -28,9 +28,9 @@ const UserAside = ({ id, image, username, readings }) => {
                 />
                 <div className='card-body'>
                     <h5 className='card-title'>{username}</h5>
-                    <Link to={`/${id}/pubs`}>
-                        <p>Subscriptions</p>
-                    </Link>
+                    <NavLink exact to={`/${id}/pubs`} activeClassName='badge badge-primary' className='badge'>
+                        Subscriptions
+                    </NavLink>
                     {totalArticles}
                     {totalBooks}
                 </div>
