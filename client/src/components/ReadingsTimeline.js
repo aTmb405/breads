@@ -9,7 +9,7 @@ const ReadingsTimeline = props => {
                 id={props.id}
                 image={props.image}
                 username={props.username}
-                readings={props.readings}
+                // readings={props.readings}
             />
             <ReadingsList />
         </div>

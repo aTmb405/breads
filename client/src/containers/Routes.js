@@ -76,7 +76,6 @@ const Routes = props => {
                                 id={currentUser.user.id}
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
-                                readings={readings}
                                 users={users}
                                 {...props}
                             />
@@ -116,7 +115,7 @@ const Routes = props => {
                                 id={currentUser.user.id}
                                 image={currentUser.user.image}
                                 username={currentUser.user.username}
-                                users={users}
+                                readings={readings}
                                 {...props}
                             />
                         </div>

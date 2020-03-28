@@ -5,7 +5,7 @@ import DefaultImage from '../images/default-profile-image.jpg';
 const SubscriptionItem = ({ reading_id, title, domain, url, word_count, username, image, user_id, summary, viewSummary, removeSummary }) => {
     return (
         <li className='list-group-item'>
-            <h5 className='row'><a href={`${url}`} target='_blank' rel='noopener' className='.text-dark'>{title}</a></h5>
+            <h5 className='row'><a href={`${url}`} target='_blank' rel='noopener noreferrer' className='.text-dark'>{title}</a></h5>
             <div className='row reading-area'>
                 <p className='lead'>{domain}</p>
                 <p className='text-muted ml-auto'>~{Number(word_count).toLocaleString()} words</p>

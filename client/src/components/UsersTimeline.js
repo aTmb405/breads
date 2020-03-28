@@ -9,7 +9,6 @@ const UsersTimeline = props => {
                 id={props.id}
                 image={props.image}
                 username={props.username}
-                readings={props.readings}
             />
             <UsersList /> 
         </div>
