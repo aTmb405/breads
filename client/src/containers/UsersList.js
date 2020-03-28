@@ -4,10 +4,6 @@ import { fetchUsers } from '../store/actions/users';
 import UserItem from '../components/UserItem';
 
 class UsersList extends Component {
-    // componentDidMount() {
-    //     const { match: { params } } = this.props;
-    //     console.log(params);
-    // }
     render() {
         const { users } = this.props;
         let usersList = users.map(u => (           
@@ -21,16 +17,11 @@ class UsersList extends Component {
             />     
         ));
         return (
-            <div className='row col-sm-8 offset-md-2'>
+            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
                 {this.props.users.length ? (
                     <div className='card-columns'>
                         {usersList}
                     </div>
-                    // <div className='offset-1 col-sm-10'>
-                    //     <div className='list-group' id='users'>
-                            
-                    //     </div>
-                    // </div>
                 ) : (
                     <div className='d-flex justify-content-center'>
                         <div className='spinner-grow text-primary' role='status'>

@@ -10,11 +10,13 @@ class ReadingsList extends Component {
     componentDidMount() {
         this.props.fetchReadings();
     }
-    componentDidUpdate(prevProps) {
-        if (this.props.readings[0] !== prevProps.readings[0]) {
-            this.props.fetchReadings();
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     console.log('UPDATE 1');
+    //     if (JSON.stringify(this.props.readings) !== JSON.stringify(prevProps.readings)) {
+    //         console.log('UPDATE 2');
+    //         this.props.fetchReadings();
+    //     }
+    // }
 // clear reading state whenever logged out or failed login
     render() {
         const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props;
@@ -36,12 +38,10 @@ class ReadingsList extends Component {
             />     
         ));
         return (
-            <div className='row col-sm-8 offset-md-2'>
+            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
                 {this.props.readings.length ? (
-                    <div className='offset-1 col-sm-10'>
-                        <div className='list-group' id='readings'>
-                            {readingsList}
-                        </div>
+                    <div className='list-group' id='readings'>
+                        {readingsList}
                     </div>
                 ) : (
                     <div className='d-flex justify-content-center'>

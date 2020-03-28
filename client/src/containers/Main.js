@@ -3,8 +3,8 @@ import Routes from './Routes';
 
 const Main = props => {
     return (
-        <div className='container py-5'>
-            <Routes/> {/*articles={this.props.articles} */}
+        <div className='container-fluid py-5'>
+            <Routes />
         </div>
     )
 }

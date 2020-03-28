@@ -18,7 +18,8 @@ const UserAside = ({ id, image, username, readings }) => {
     // totalBooks = <p className='card-text'>Loaves: <strong>{totalWords.toFixed(2)}</strong></p>;
     
     return (
-        <aside className='col-sm-2 position-fixed'>
+        <aside className='col-lg-3 col-sm-10 offset-sm-1 offset-lg-0'>
+            {/* position-fixed */}
             <div className='card'>
                 <img
                     src={image || DefaultImage}

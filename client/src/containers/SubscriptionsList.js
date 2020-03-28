@@ -27,12 +27,10 @@ class SubscriptionsList extends Component {
             />     
         ));
         return (
-            <div className='row col-sm-8 offset-md-2'>
+            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
                 {this.props.subscriptions.length ? (
-                    <div className='offset-1 col-sm-10'>
-                        <div className='list-group' id='subscriptions'>
-                            {subscriptionsList}
-                        </div>
+                    <div className='list-group' id='subscriptions'>
+                        {subscriptionsList}
                     </div>
                 ) : (
                     <div className='d-flex justify-content-center'>

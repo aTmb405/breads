@@ -8,11 +8,6 @@ class UserReadingsList extends Component {
     componentDidMount() {
         this.props.fetchUserReadings(this.props.match.params.id);
     }
-    componentDidUpdate(prevProps) {
-        if (this.props.match.params.id !== prevProps.match.params.id) {
-            this.props.fetchUserReadings(this.props.match.params.id);
-        }
-    }
 // clear reading state whenever logged out or failed login
     render() {
         const { readings, removeReading, summary, fetchSummary, removeSummary, currentUser } = this.props;
@@ -35,12 +30,10 @@ class UserReadingsList extends Component {
             />
         ));
         return (
-            <div className='row col-sm-8 offset-md-2'>
+            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
                 {this.props.readings.length ? (
-                    <div className='offset-1 col-sm-10'>
-                        <div className='list-group' id='readings'>
-                            {userReadingsList}
-                        </div>
+                    <div className='list-group' id='readings'>
+                        {userReadingsList}
                     </div>
                 ) : (
                     <div className='d-flex justify-content-center'>
