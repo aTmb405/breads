@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSubscriptions } from '../store/actions/subscriptions';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
+import List from '../components/List';
 import ListItem from '../components/ListItem';
 
 class SubscriptionsList extends Component {
@@ -24,22 +25,10 @@ class SubscriptionsList extends Component {
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, s.id, s.url)}
                 removeSummary={removeSummary}
-            />              
+            />    
         ));
         return (
-            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
-                {this.props.subscriptions.length ? (
-                    <div className='list-group' id='subscriptions'>
-                        {subscriptionsList}
-                    </div>
-                ) : (
-                    <div className='d-flex justify-content-center'>
-                        <div className='spinner-grow text-primary' role='status'>
-                            <span className='sr-only'>Loading...</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <List list_data={subscriptionsList} />
         )
     }
 }

@@ -4,6 +4,7 @@ import { fetchReadings } from '../store/actions/readings';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
 import { fetchUsers } from '../store/actions/users';
 import { postNewSubscription } from '../store/actions/subscriptions';
+import List from '../components/List';
 import ListItem from '../components/ListItem';
 
 class ReadingsList extends Component {
@@ -38,19 +39,7 @@ class ReadingsList extends Component {
             />              
         ));
         return (
-            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
-                {this.props.readings.length ? (
-                    <div className='list-group' id='readings'>
-                        {readingsList}
-                    </div>
-                ) : (
-                    <div className='d-flex justify-content-center'>
-                        <div className='spinner-grow text-primary' role='status'>
-                            <span className='sr-only'>Loading...</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <List list_data={readingsList} />
         )
     }
 }
@@ -59,7 +48,6 @@ function mapStateToProps(state) {
     return {
         readings: state.readings,
         summary: state.summary
-        // users: state.users,
     }
 }
 

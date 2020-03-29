@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserReadings, removeReading } from '../store/actions/readings';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
+import List from '../components/List';
 import ListItem from '../components/ListItem';
 
 class UserReadingsList extends Component {
@@ -30,19 +31,7 @@ class UserReadingsList extends Component {
             /> 
         ));
         return (
-            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
-                {this.props.readings.length ? (
-                    <div className='list-group' id='readings'>
-                        {userReadingsList}
-                    </div>
-                ) : (
-                    <div className='d-flex justify-content-center'>
-                        <div className='spinner-grow text-primary' role='status'>
-                            <span className='sr-only'>Loading...</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <List list_data={userReadingsList} />
         )
     }
 }
