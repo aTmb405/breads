@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../store/actions/users';
-import UserItem from '../components/UserItem';
+import List from '../components/List';
+import ListCard from '../components/ListCard';
 
 class UsersList extends Component {
     render() {
         const { users } = this.props;
         let usersList = users.map(u => (           
-            <UserItem
+            <ListCard
                 key={u.id}
                 id={u.id}
                 first={u.first_name}
@@ -17,19 +18,7 @@ class UsersList extends Component {
             />     
         ));
         return (
-            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
-                {this.props.users.length ? (
-                    <div className='card-columns'>
-                        {usersList}
-                    </div>
-                ) : (
-                    <div className='d-flex justify-content-center'>
-                        <div className='spinner-grow text-primary' role='status'>
-                            <span className='sr-only'>Loading...</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <List list_data={usersList} display='card-columns' />
         )
     }
 }

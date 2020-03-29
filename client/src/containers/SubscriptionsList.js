@@ -28,7 +28,7 @@ class SubscriptionsList extends Component {
             />    
         ));
         return (
-            <List list_data={subscriptionsList} />
+            <List list_data={subscriptionsList} display='list-group' />
         )
     }
 }

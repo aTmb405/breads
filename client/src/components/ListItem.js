@@ -1,10 +1,9 @@
 import React from 'react';
-// import { connectAdvanced } from 'react-redux';
 // import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import DefaultImage from '../images/default-profile-image.jpg';
 
-const ListItem = (props) => {
+const ListItem = props => {
     return (
         <li className='list-group-item'>
             <h5 className='row'><a href={`${props.url}`} target='_blank'  rel='noopener noreferrer' className='.text-dark'>{props.title}</a></h5>

@@ -31,7 +31,7 @@ class UserReadingsList extends Component {
             /> 
         ));
         return (
-            <List list_data={userReadingsList} />
+            <List list_data={userReadingsList} display='list-group' />
         )
     }
 }

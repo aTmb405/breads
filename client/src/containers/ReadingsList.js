@@ -39,7 +39,7 @@ class ReadingsList extends Component {
             />              
         ));
         return (
-            <List list_data={readingsList} />
+            <List list_data={readingsList} display='list-group' />
         )
     }
 }

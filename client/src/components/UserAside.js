@@ -13,15 +13,15 @@ const UserAside = ({ id, image, username, readings }) => {
     let totalWords = 0;
     let user = {};
     let user_id;
-    console.log(id);
-    console.log(image);
-    console.log(username);
+    // console.log(id);
+    // console.log(image);
+    // console.log(username);
     if (readings) {
         //change data if within User Readings
         for (const property in readings[0]) {
             user[property] = readings[0][property]
         }
-        console.log(user);
+        // console.log(user);
         user_id = id;
         id = user.user_id;
         image = user.image;

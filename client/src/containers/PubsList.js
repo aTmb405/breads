@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPubs } from '../store/actions/users';
 import { removeSubscription } from '../store/actions/subscriptions';
-import UserItem from '../components/UserItem';
+import List from '../components/List';
+import ListCard from '../components/ListCard';
 
 class PubsList extends Component {
     componentDidMount() {
@@ -15,8 +16,9 @@ class PubsList extends Component {
     }
     render() {
         const { users, removeSubscription, currentUser } = this.props;
-        let pubsList = users.map(p => (           
-            <UserItem
+        let pubsList = [];
+            pubsList = users.map(p => (           
+            <ListCard
                 key={p.id}
                 id={p.id}
                 first={p.first_name}
@@ -25,22 +27,10 @@ class PubsList extends Component {
                 image={p.image}
                 removeSubscription={removeSubscription.bind(this, currentUser, p.id)}
                 pubs='yes'
-            />     
+            />
         ));
         return (
-            <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
-                {this.props.users.length ? (
-                    <div className='card-columns'>
-                        {pubsList}
-                    </div>
-                ) : (
-                    <div className='d-flex justify-content-center'>
-                        <div className='spinner-grow text-primary' role='status'>
-                            <span className='sr-only'>Loading...</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <List list_data={pubsList} display='card-columns' />
         )
     }
 }
