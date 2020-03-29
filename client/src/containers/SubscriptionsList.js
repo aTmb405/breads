@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSubscriptions } from '../store/actions/subscriptions';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
-import SubscriptionItem from '../components/SubscriptionItem';
+import ListItem from '../components/ListItem';
 
 class SubscriptionsList extends Component {
     componentDidMount() {
@@ -10,8 +10,8 @@ class SubscriptionsList extends Component {
     }
     render() {
         const { subscriptions, summary, fetchSummary, removeSummary } = this.props;
-        let subscriptionsList = subscriptions.map(s => (           
-            <SubscriptionItem
+        let subscriptionsList = subscriptions.map(s => (  
+            <ListItem
                 key={s.id}
                 reading_id={s.id}
                 title={s.title}
@@ -24,7 +24,7 @@ class SubscriptionsList extends Component {
                 summary={summary.summary}
                 viewSummary={fetchSummary.bind(this, s.id, s.url)}
                 removeSummary={removeSummary}
-            />     
+            />              
         ));
         return (
             <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>

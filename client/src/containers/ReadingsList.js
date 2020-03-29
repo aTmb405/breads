@@ -4,7 +4,7 @@ import { fetchReadings } from '../store/actions/readings';
 import { fetchSummary, removeSummary } from '../store/actions/summary';
 import { fetchUsers } from '../store/actions/users';
 import { postNewSubscription } from '../store/actions/subscriptions';
-import ReadingItem from '../components/ReadingItem';
+import ListItem from '../components/ListItem';
 
 class ReadingsList extends Component {
     componentDidMount() {
@@ -20,8 +20,8 @@ class ReadingsList extends Component {
 // clear reading state whenever logged out or failed login
     render() {
         const { readings, summary, fetchSummary, removeSummary, postNewSubscription } = this.props;
-        let readingsList = readings.map(r => (           
-            <ReadingItem
+        let readingsList = readings.map(r => (  
+            <ListItem
                 key={r.id}
                 id={r.id}
                 title={r.title}
@@ -35,7 +35,7 @@ class ReadingsList extends Component {
                 viewSummary={fetchSummary.bind(this, r.id, r.article_url)}
                 removeSummary={removeSummary}
                 newSubscription={postNewSubscription.bind(this, r.user_id)}
-            />     
+            />              
         ));
         return (
             <div className='col-lg-6 col-sm-10 offset-sm-1 offset-lg-0'>
