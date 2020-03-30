@@ -19,7 +19,7 @@ class Navbar extends Component {
             <nav className='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
                 <div className='container-fluid'>
                     <Link className='navbar-brand' to='/'>
-                        BREAD
+                        BREADS
                     </Link>
                     {this.props.currentUser.isAuthenticated ? (
                         <ul className='nav navbar-nav navbar-right'>

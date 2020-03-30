@@ -5,10 +5,12 @@ import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
-import SubscriptionsTimeline from '../components/SubscriptionsTimeline';
-import UserReadingsTimeline from '../components/UserReadingsTimeline';
-import UsersTimeline from '../components/UsersTimeline';
-import PubsTimeline from '../components/PubsTimeline';
+import Timeline from '../components/Timeline';
+import UserAside from '../components/UserAside';
+import UserReadingsList from './UserReadingsList';
+import PubsList from './PubsList';
+import SubscriptionsList from './SubscriptionsList';
+import UsersList from './UsersList';
 
 
 const Routes = props => {
@@ -72,13 +74,14 @@ const Routes = props => {
                             {errors.message && (
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
-                            <UsersTimeline
-                                id={currentUser.user.id}
-                                image={currentUser.user.image}
-                                username={currentUser.user.username}
-                                users={users}
-                                {...props}
-                            />
+                            <Timeline>
+                                <UserAside
+                                    id={currentUser.user.id}
+                                    image={currentUser.user.image}
+                                    username={currentUser.user.username}
+                                />
+                                <UsersList />
+                            </Timeline>
                         </div>
                         
                     )
@@ -93,11 +96,14 @@ const Routes = props => {
                             {errors.message && (
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
-                            <SubscriptionsTimeline 
-                                id={currentUser.user.id}
-                                image={currentUser.user.image}
-                                username={currentUser.user.username}
-                            />
+                            <Timeline>
+                                <UserAside
+                                    id={currentUser.user.id}
+                                    image={currentUser.user.image}
+                                    username={currentUser.user.username}
+                                />
+                                <SubscriptionsList />
+                            </Timeline>
                         </div>
                     )
                 }}
@@ -111,13 +117,15 @@ const Routes = props => {
                             {errors.message && (
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
-                            <UserReadingsTimeline
-                                id={currentUser.user.id}
-                                image={currentUser.user.image}
-                                username={currentUser.user.username}
-                                readings={readings}
-                                {...props}
-                            />
+                            <Timeline>
+                                <UserAside
+                                    id={currentUser.user.id}
+                                    image={currentUser.user.image}
+                                    username={currentUser.user.username}
+                                    readings={readings}
+                                />
+                                <UserReadingsList match={props.match}/>
+                            </Timeline>
                         </div>
                     )
                 }}
@@ -131,13 +139,14 @@ const Routes = props => {
                             {errors.message && (
                                 <div className='alert alert-danger'>{errors.message}</div>
                             )}
-                            <PubsTimeline
-                                id={currentUser.user.id}
-                                image={currentUser.user.image}
-                                username={currentUser.user.username}
-                                users={users}
-                                {...props}
-                            />
+                            <Timeline>
+                                <UserAside
+                                    id={currentUser.user.id}
+                                    image={currentUser.user.image}
+                                    username={currentUser.user.username}
+                                />
+                                <PubsList match={props.match}/>
+                            </Timeline>
                         </div>
                     )
                 }}

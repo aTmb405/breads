@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ReadingsTimeline from './ReadingsTimeline';
+import Timeline from './Timeline';
+import UserAside from './UserAside';
+import ReadingsList from '../containers/ReadingsList';
 
 const Homepage = ({ errors, currentUser, readings }) => {
     if (!currentUser.isAuthenticated) {
@@ -19,13 +21,14 @@ const Homepage = ({ errors, currentUser, readings }) => {
             {errors.message && (
                 <div className='alert alert-danger'>{errors.message}</div>
             )}
-            <ReadingsTimeline
-                id={currentUser.user.id}
-                image={currentUser.user.image}
-                username={currentUser.user.username}
-                readings={readings}
-                errors={errors}
-            /> 
+            <Timeline>
+                <UserAside 
+                    id={currentUser.user.id}
+                    image={currentUser.user.image}
+                    username={currentUser.user.username}
+                />
+                <ReadingsList />
+            </Timeline>
         </div>
     )
 }
