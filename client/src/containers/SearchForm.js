@@ -28,7 +28,7 @@ class SearchForm extends Component {
 
         return (
             <form onSubmit={this.handleSubmit} className='form-inline'>
-                <div className='form-group mx-sm-3 mb-2'>
+                <div className='form-group mx-sm-3'>
                     <label htmlFor='search'></label>
                     <input
                         type='text'
@@ -40,7 +40,7 @@ class SearchForm extends Component {
                         value={search}
                     />
                 </div>
-                <button type='submit' className='btn btn-outline-primary btn-sm mb-2'>Search Users</button>
+                <button type='submit' className='btn btn-outline-light btn-sm'>Search</button>
             </form>
         )
     }

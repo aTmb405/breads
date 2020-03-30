@@ -29,7 +29,7 @@ const UserAside = ({ id, image, username, readings }) => {
         readings.forEach(r => {
             totalWords += r.word_count/100000;
         });
-        totalArticles = <p className='card-text'>Toasts: <strong>{readings.length}</strong></p>;
+        totalArticles = <p className='card-text'>Readings: <strong>{readings.length}</strong></p>;
         totalBooks = <p className='card-text'>Loaves: <strong>{totalWords.toFixed(2)}</strong></p>;
     }
     

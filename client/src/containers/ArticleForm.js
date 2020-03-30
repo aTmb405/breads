@@ -36,9 +36,9 @@ class ArticleForm extends Component {
         return (
                 <form onSubmit={this.handleNewUrl} className='form-inline'>
                     {/* {errors.message && (
-                        <div className='alert alert-danger p-1 mb-2 small'>{errors.message}</div>
+                        <div className='alert alert-danger p-1 small'>{errors.message}</div>
                     )} */}
-                    <div className='form-group mx-sm-3 mb-2'>
+                    <div className='form-group mx-sm-3'>
                         <label htmlFor='url'></label>
                         <input
                             type='text'
@@ -50,7 +50,7 @@ class ArticleForm extends Component {
                             value={url}
                         />
                     </div>
-                    <button type='submit' className='btn btn-outline-primary btn-sm mb-2'>Submit Article</button>
+                    <button type='submit' className='btn btn-outline-light btn-sm'>Submit</button>
                 </form>
         )
     }

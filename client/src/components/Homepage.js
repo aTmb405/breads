@@ -4,7 +4,7 @@ import Timeline from './Timeline';
 import UserAside from './UserAside';
 import ReadingsList from '../containers/ReadingsList';
 
-const Homepage = ({ errors, currentUser, readings }) => {
+const Homepage = ({ errors, currentUser }) => {
     if (!currentUser.isAuthenticated) {
         return (
             <div className='home-hero'>

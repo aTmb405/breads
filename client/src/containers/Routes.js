@@ -14,7 +14,7 @@ import UsersList from './UsersList';
 
 
 const Routes = props => {
-    const { authUser, errors, removeError, currentUser, readings, users } = props;
+    const { authUser, errors, removeError, currentUser, readings } = props;
     return (
         <Switch>
             <Route
@@ -25,8 +25,6 @@ const Routes = props => {
                         <Homepage
                             errors={errors}
                             currentUser={currentUser}
-                            readings={readings}
-                            users={users}
                             {...props}
                         />
                     )
@@ -159,8 +157,7 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
-    readings: state.readings,
-    users: state.users
+    readings: state.readings
   };
 }
 
