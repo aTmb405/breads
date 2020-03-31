@@ -28,8 +28,8 @@ class SearchForm extends Component {
 
         return (
             <form onSubmit={this.handleSubmit} className='form-inline'>
-                <div className='form-group mx-sm-3'>
-                    <label htmlFor='search'></label>
+                <label htmlFor='search'></label>
+                <div className='input-group'>
                     <input
                         type='text'
                         className='form-control form-control-sm'
@@ -39,8 +39,10 @@ class SearchForm extends Component {
                         placeholder='Search for friends'
                         value={search}
                     />
+                    <div className='input-group-append'>
+                        <button type='submit' className='btn btn-outline-light btn-sm'>Search</button>
+                    </div>
                 </div>
-                <button type='submit' className='btn btn-outline-light btn-sm'>Search</button>
             </form>
         )
     }

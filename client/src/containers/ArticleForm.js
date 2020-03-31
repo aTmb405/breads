@@ -34,12 +34,10 @@ class ArticleForm extends Component {
         // const { errors } = this.props; //readings
 
         return (
+            <aside className='col-lg-3 col-md-10 offset-sm-1 offset-lg-0'>
                 <form onSubmit={this.handleNewUrl} className='form-inline'>
-                    {/* {errors.message && (
-                        <div className='alert alert-danger p-1 small'>{errors.message}</div>
-                    )} */}
-                    <div className='form-group mx-sm-3'>
-                        <label htmlFor='url'></label>
+                    <label htmlFor='url'></label>
+                    <div className='input-group'>
                         <input
                             type='text'
                             className='form-control form-control-sm'
@@ -49,9 +47,12 @@ class ArticleForm extends Component {
                             placeholder='www.coolarticle.com'
                             value={url}
                         />
+                        <div className='input-group-append'>
+                            <button type='submit' className='btn btn-outline-primary btn-sm'>Submit</button>
+                        </div>
                     </div>
-                    <button type='submit' className='btn btn-outline-light btn-sm'>Submit</button>
                 </form>
+            </aside>
         )
     }
 }

@@ -11,6 +11,7 @@ import UserReadingsList from './UserReadingsList';
 import PubsList from './PubsList';
 import SubscriptionsList from './SubscriptionsList';
 import UsersList from './UsersList';
+import ArticleForm from './ArticleForm';
 
 
 const Routes = props => {
@@ -101,6 +102,7 @@ const Routes = props => {
                                     username={currentUser.user.username}
                                 />
                                 <SubscriptionsList />
+                                <ArticleForm history={props.history}/>
                             </Timeline>
                         </div>
                     )
@@ -123,6 +125,7 @@ const Routes = props => {
                                     readings={readings}
                                 />
                                 <UserReadingsList match={props.match}/>
+                                <ArticleForm history={props.history}/>
                             </Timeline>
                         </div>
                     )

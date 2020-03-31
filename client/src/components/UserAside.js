@@ -37,20 +37,11 @@ const UserAside = ({ id, image, username, readings }) => {
         <aside className='col-lg-3 col-sm-10 offset-sm-1 offset-lg-0'>
             {/* position-fixed */}
             <div className='card'>
-                {/* {readings ? (
-                    <img
-                        src={image || DefaultImage}
-                        alt={username}
-                        className='img-thumbnail'
-                    />
-                ) : ( */}
-                    <img
-                        src={image || DefaultImage}
-                        alt={username}
-                        className='img-thumbnail'
-                    />
-                {/* )} */}
-                
+                <img
+                    src={image || DefaultImage}
+                    alt={username}
+                    className='img-thumbnail'
+                />
                 <div className='card-body'>
                     <h5 className='card-title'>{username}</h5>
                     {user_id === id && 
@@ -58,7 +49,6 @@ const UserAside = ({ id, image, username, readings }) => {
                             Subscriptions
                         </NavLink>
                     }
-                    
                     {totalArticles}
                     {totalBooks}
                 </div>
