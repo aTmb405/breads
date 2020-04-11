@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './containers/App';
+import Routes from '../containers/Routes';
 
 it('renders without crashing', () => {
-    shallow(<App />);
+    shallow(<Routes />);
 });
