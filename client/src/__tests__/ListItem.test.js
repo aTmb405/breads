@@ -2,9 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ListItem from '../components/ListItem';
 
-let fetchSummary = jest.fn();
-let removeSummary = jest.fn();
-let postNewSubscription = jest.fn();
+let [viewSummary, removeSummary, newSubscription, removeReading] = new Array(4).fill(jest.fn());
 
 function shallowSetup() {
     const props = {
@@ -20,7 +18,12 @@ function shallowSetup() {
         summary: {
             id: 1,
             data: 'this is the summary'
-        }
+        },
+        viewSummary: viewSummary,
+        removeSummary: removeSummary,
+        newSubscription: newSubscription,
+        removeReading: removeReading,
+        isCorrectUser: true
     }
 
     const enzymeWrapper = shallow(<ListItem {...props} />);
@@ -31,25 +34,50 @@ function shallowSetup() {
     }
 }
 
-describe('Shallow rendered List', () => {
-    it('renders without crashing', () => {
-        const { enzymeWrapper } = shallowSetup()
-        enzymeWrapper;
-    });
-    it('renders items or cards', () => {
+describe('Shallow rendered ListItem', () => {
+    it('renders self', () => {
         const { enzymeWrapper, props } = shallowSetup();
         expect(enzymeWrapper.find('h5').text()).toBe(props.title);
-        // expect(enzymeWrapper.find('a')) click opens props.url
         expect(enzymeWrapper.find('.lead').text()).toBe(props.domain);
         expect(enzymeWrapper.find('div.reading-area').find('p.text-muted').text()).toBe(`~${Number(props.word_count).toLocaleString()} words`);
         expect(enzymeWrapper.find('img').hasClass('timeline-image')).toBe(true);
-        expect(enzymeWrapper.find('img').html()).toContain(props.image); //assert attr src and alt?
+        expect(enzymeWrapper.find('img').html()).toContain(props.image);
         expect(enzymeWrapper.find('p.btn.text-primary.m-2').text()).toBe(props.username);
-        //test showing and hiding summary data
-        //test a link
-        //test subscribe function
-        //test user profile link
-        //test delete function
+    });
+});
+
+describe('Mounted ListItem', () => {
+    let wrapper, props_, sandbox;
+    beforeEach(() => {
+        const { enzymeWrapper, props } = shallowSetup()
+        wrapper = enzymeWrapper;
+        props_ = props;
+    });
+    afterEach(() => {
+        viewSummary.mockClear();
+        removeSummary.mockClear();
+        newSubscription.mockClear();
+        removeReading.mockClear();
+    });
+    it('displays Remove Summary button and Summary data when View Summary button is clicked', () => {
+        const button = wrapper.find('p.btn.text-muted.m-2.ml-auto');
+        button.simulate('click');
+        // need to change summary state on click
+        expect(removeSummary).toBeCalled();
+        expect(button.text()).toBe('Remove Summary');
+        expect(wrapper.find('p.summary-data').text()).toBe(props_.summary.data);
+    });
+    it('displays Delete and calls removeReading if correct user', () => {
+        const deleteButton = wrapper.find('p.delete');
+        expect(deleteButton.text()).toBe('Delete');
+        deleteButton.simulate('click');
+        expect(removeReading).toBeCalled();
+    });
+    it('subscribes to a user when Subscribe is clicked', () => {
+        const subscribe = wrapper.find('p.subscribe');
+        subscribe.simulate('click');
+        expect(newSubscription).toBeCalled();
+        expect(subscribe.text()).toBe('Subscribe');
     });
 });
 
