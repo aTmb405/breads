@@ -47,7 +47,7 @@ describe('Shallow rendered ListItem', () => {
 });
 
 describe('Mounted ListItem', () => {
-    let wrapper, props_, sandbox;
+    let wrapper, props_;
     beforeEach(() => {
         const { enzymeWrapper, props } = shallowSetup()
         wrapper = enzymeWrapper;
