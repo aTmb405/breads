@@ -62,7 +62,6 @@ describe('Mounted ListItem', () => {
     it('displays Remove Summary button and Summary data when View Summary button is clicked', () => {
         const button = wrapper.find('p.btn.text-muted.m-2.ml-auto');
         button.simulate('click');
-        // need to change summary state on click
         expect(removeSummary).toBeCalled();
         expect(button.text()).toBe('Remove Summary');
         expect(wrapper.find('p.summary-data').text()).toBe(props_.summary.data);
