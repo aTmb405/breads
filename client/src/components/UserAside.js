@@ -13,24 +13,23 @@ const UserAside = ({ id, image, username, readings }) => {
     let totalWords = 0;
     let user = {};
     let user_id;
-    // console.log(id);
-    // console.log(image);
-    // console.log(username);
+
     if (readings) {
         //change data if within User Readings
         for (const property in readings[0]) {
             user[property] = readings[0][property]
         }
-        // console.log(user);
+
         user_id = id;
         id = user.user_id;
-        image = user.image;
-        username = user.username;
+        // image = user.image;
+        // username = user.username;
         readings.forEach(r => {
             totalWords += r.word_count/100000;
         });
-        totalArticles = <p className='card-text'>Readings: <strong>{readings.length}</strong></p>;
-        totalBooks = <p className='card-text'>Loaves: <strong>{totalWords.toFixed(2)}</strong></p>;
+
+        totalArticles = <p className='card-text reading-sum'>Readings: <strong>{readings.length}</strong></p>;
+        totalBooks = <p className='card-text book-sum'>Loaves: <strong>{totalWords.toFixed(2)}</strong></p>;
     }
     
     return (
