@@ -15,7 +15,7 @@ class PubsList extends Component {
         }
     }
     render() {
-        const { users, removeSubscription, currentUser } = this.props;
+        const { users, removeSubscription, currentUser, match } = this.props;
         let pubsList = [];
             pubsList = users.map(p => (           
             <ListCard
@@ -26,7 +26,7 @@ class PubsList extends Component {
                 username={p.username}
                 image={p.image}
                 removeSubscription={removeSubscription.bind(this, currentUser, p.id)}
-                pubs='yes'
+                pubs={currentUser == match.params.id ? 'yes' : 'no'}
             />
         ));
         return (

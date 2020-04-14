@@ -22,8 +22,8 @@ const UserAside = ({ id, image, username, readings }) => {
 
         user_id = id;
         id = user.user_id;
-        // image = user.image;
-        // username = user.username;
+        if (user.image) image = user.image;
+        if (user.username) username = user.username;
         readings.forEach(r => {
             totalWords += r.word_count/100000;
         });
