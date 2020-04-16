@@ -29,7 +29,7 @@ function shallowSetup() {
     }
 }
 
-describe('Shallow rendered ListItem', () => {
+describe('Shallow rendered ListCard', () => {
     it('renders self', () => {
         const { enzymeWrapper, props } = shallowSetup();
         expect(enzymeWrapper.find('h5').text()).toBe(props.username);
@@ -39,6 +39,24 @@ describe('Shallow rendered ListItem', () => {
         expect(enzymeWrapper.find('.card-body').text()).toContain('Subscriptions');
     });
 });
+
+describe('Mounted ListCard', () => {
+    let wrapper, props_;
+    beforeEach(() => {
+        const { enzymeWrapper, props } = shallowSetup()
+        wrapper = enzymeWrapper;
+        props_ = props;
+    });
+    afterEach(() => {
+        removeSubscription.mockClear();
+    });
+    it('removes subscription when Unsubscribe is clicked', () => {
+        const unsubscribe = wrapper.find('small.unsubscribe');
+        unsubscribe.simulate('click');
+        expect(removeSubscription).toBeCalled();
+        expect(unsubscribe.text()).toBe('Unsubscribe');
+    });
+})
 
 // 1. What is the output of the component i.e what does it render?
 //  - item that displays image, username, first name, last name, link to subs, unsubscribe

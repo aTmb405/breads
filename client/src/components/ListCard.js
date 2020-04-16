@@ -19,7 +19,7 @@ const ListCard = props => {
                     <p>Subscriptions</p>
                 </Link>
                 {props.pubs === 'yes' && (
-                    <small onClick={props.removeSubscription} className='text-danger'>Unsubscribe</small>
+                    <small onClick={props.removeSubscription} className='text-danger unsubscribe'>Unsubscribe</small>
                 )}
             </div>
         </div>
