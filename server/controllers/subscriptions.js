@@ -10,7 +10,7 @@ exports.createSubscription = async (req, res, next) => {
         }
     }
     catch (err) {
-        console.log('createSubscription - controllers/users');
+        console.log('createSubscription - controllers/subscriptions');
         if (err.code === 'ER_DUP_ENTRY') {
             err.message = 'You already subscribe to them!';
         }

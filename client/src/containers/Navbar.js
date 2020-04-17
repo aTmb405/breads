@@ -4,16 +4,35 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
 import { withRouter } from 'react-router-dom';
 import SearchForm from './SearchForm';
+import { fetchNotifications, updateNotifications } from '../store/actions/notifications';
 
 class Navbar extends Component {
-    
+    componentDidMount() {
+        this.props.fetchNotifications();
+    }
+
     logout = e => {
         e.preventDefault();
         this.props.logout();
         this.props.history.push('/');
     }
 
+    handleClick = e => {
+        e.preventDefault();
+        this.props.updateNotifications();
+    }
+
     render() {
+        const { notifications } = this.props;
+
+        let notificationsList = notifications.map(n => (
+            <button key={n.subscriber_id} className='dropdown-item'>
+                <span key={n.subscriber_id} className='text-primary'>
+                {/* onClick={this.handleClick.bind(n.subscriber_id)} */}
+                {n.username}</span> started following you!
+            </button>
+        ));
+
         return (
             <nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
                 <div className='container-fluid'>
@@ -25,8 +44,8 @@ class Navbar extends Component {
                     </button>
                     {this.props.currentUser.isAuthenticated ? (
                         <div className='collapse navbar-collapse collapsable' id='collapsable'>    
-                            <ul className='nav navbar-nav ml-auto'>
-                                
+                            <SearchForm history={this.props.history}/>
+                            <ul className='nav navbar-nav m-auto'>
                                 <li>
                                     <NavLink exact to='/' activeClassName='bg-primary text-white' className='btn text-white btn-sm'>
                                         Global
@@ -42,13 +61,27 @@ class Navbar extends Component {
                                         Subscriptions
                                     </NavLink>
                                 </li>
-                                <SearchForm history={this.props.history}/>
-                                <li>
-                                    <button onClick={this.logout} className='btn text-white btn-sm'>Log out</button>
-                                </li>
                             </ul>
+                            <button className='btn text-white btn-sm dropdown-toggle' type='button' id='navbarDropdown' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                {!notificationsList.length ? (
+                                    <span className='badge badge-pill badge-primary'>{notificationsList.length}</span>
+                                ) : (
+                                    <span className='badge badge-pill badge-danger'>{notificationsList.length}</span>
+                                )}
+                            </button>
+                            <div onClick={this.handleClick} className='dropdown-menu dropdown-menu-right' aria-labelledby='navbarDropdown'>
+                                {!notificationsList.length ? (
+                                    <button className='dropdown-item'>
+                                        No new subscribers!
+                                    </button>
+                                ) : ( 
+                                    notificationsList
+                                )}
+                            </div>
+                            <button onClick={this.logout} className='btn text-white btn-sm'>
+                                Log out
+                            </button>
                         </div>
-                        
                     ) : (
                         <div className='collapse navbar-collapse' id='collapsable'>
                             <ul className='nav navbar-nav ml-auto'>
@@ -74,8 +107,8 @@ class Navbar extends Component {
 function mapStateToProps(state) {
     return {
         currentUser: state.currentUser,
-        currentList: state.currentList
+        notifications: state.notifications
     };
 }
 
-export default withRouter(connect(mapStateToProps, { logout })(Navbar));
+export default withRouter(connect(mapStateToProps, { logout, fetchNotifications, updateNotifications })(Navbar));

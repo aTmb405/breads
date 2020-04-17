@@ -19,8 +19,8 @@ class ArticleForm extends Component {
         });
     };
 
-    handleNewUrl = (event) => {
-        event.preventDefault();
+    handleNewUrl = e => {
+        e.preventDefault();
         this.props.postNewReading(this.state.url);
         this.setState({ url: '' });
         this.props.history.push('/');

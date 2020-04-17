@@ -20,7 +20,8 @@ let express = require('express'),
     auth = require('./middleware/auth'),
     readings = require('./controllers/readings'),
     users = require('./controllers/users'),
-    subscriptions = require('./controllers/subscriptions');
+    subscriptions = require('./controllers/subscriptions'),
+    notifications = require('./controllers/notifications');
 
 const PORT = 8080;
 
@@ -47,6 +48,8 @@ app.get('/api/summary/:id', readings.summarizeReading);
 app.post('/api/subscribe', subscriptions.createSubscription);
 app.get('/api/subscriptions/:id', subscriptions.findUserSubscriptions);
 app.delete('/api/users/:sub_id/subscriptions/:pub_id', subscriptions.deleteSubscription);
+app.get('/api/notifications/:id', notifications.findNewSubscriptions);
+app.put('/api/notifications/:id', notifications.removeNotification);
 
 app.use(function(req, res, next) {
     let err = new Error('Not Found');
