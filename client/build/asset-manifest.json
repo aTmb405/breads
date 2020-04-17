@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/www.breads.io/static/css/main.aa8d2e26.chunk.css",
-    "main.js": "/www.breads.io/static/js/main.54df3db6.chunk.js",
-    "main.js.map": "/www.breads.io/static/js/main.54df3db6.chunk.js.map",
-    "runtime-main.js": "/www.breads.io/static/js/runtime-main.9d1ba1cf.js",
-    "runtime-main.js.map": "/www.breads.io/static/js/runtime-main.9d1ba1cf.js.map",
-    "static/css/2.de424728.chunk.css": "/www.breads.io/static/css/2.de424728.chunk.css",
-    "static/js/2.08344ab9.chunk.js": "/www.breads.io/static/js/2.08344ab9.chunk.js",
-    "static/js/2.08344ab9.chunk.js.map": "/www.breads.io/static/js/2.08344ab9.chunk.js.map",
-    "index.html": "/www.breads.io/index.html",
-    "precache-manifest.b396ef050410da86890d432d5c5e9b8f.js": "/www.breads.io/precache-manifest.b396ef050410da86890d432d5c5e9b8f.js",
-    "service-worker.js": "/www.breads.io/service-worker.js",
-    "static/css/2.de424728.chunk.css.map": "/www.breads.io/static/css/2.de424728.chunk.css.map",
-    "static/css/main.aa8d2e26.chunk.css.map": "/www.breads.io/static/css/main.aa8d2e26.chunk.css.map",
-    "static/js/2.08344ab9.chunk.js.LICENSE.txt": "/www.breads.io/static/js/2.08344ab9.chunk.js.LICENSE.txt"
+    "main.css": "/breads/static/css/main.aa8d2e26.chunk.css",
+    "main.js": "/breads/static/js/main.0cdba4e6.chunk.js",
+    "main.js.map": "/breads/static/js/main.0cdba4e6.chunk.js.map",
+    "runtime-main.js": "/breads/static/js/runtime-main.1b4f87ee.js",
+    "runtime-main.js.map": "/breads/static/js/runtime-main.1b4f87ee.js.map",
+    "static/css/2.de424728.chunk.css": "/breads/static/css/2.de424728.chunk.css",
+    "static/js/2.08344ab9.chunk.js": "/breads/static/js/2.08344ab9.chunk.js",
+    "static/js/2.08344ab9.chunk.js.map": "/breads/static/js/2.08344ab9.chunk.js.map",
+    "index.html": "/breads/index.html",
+    "precache-manifest.ed740267fa24f44ca183bc42a8349c1a.js": "/breads/precache-manifest.ed740267fa24f44ca183bc42a8349c1a.js",
+    "service-worker.js": "/breads/service-worker.js",
+    "static/css/2.de424728.chunk.css.map": "/breads/static/css/2.de424728.chunk.css.map",
+    "static/css/main.aa8d2e26.chunk.css.map": "/breads/static/css/main.aa8d2e26.chunk.css.map",
+    "static/js/2.08344ab9.chunk.js.LICENSE.txt": "/breads/static/js/2.08344ab9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.9d1ba1cf.js",
+    "static/js/runtime-main.1b4f87ee.js",
     "static/css/2.de424728.chunk.css",
     "static/js/2.08344ab9.chunk.js",
     "static/css/main.aa8d2e26.chunk.css",
-    "static/js/main.54df3db6.chunk.js"
+    "static/js/main.0cdba4e6.chunk.js"
   ]
 }
